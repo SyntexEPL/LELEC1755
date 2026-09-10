@@ -1,0 +1,48 @@
+\documentclass[12pt,a4paper]{article}
+
+%format papier et marges
+\usepackage{geometry}
+\geometry{
+ a4paper,
+ total={150mm,227mm},
+ left=30mm,
+ top=30mm,
+ }
+
+\usepackage{styles}
+
+\title{Physique des dispositifs électroniques et des lignes de transmission (LELEC1755)}
+\author{\textit{Réalisé par}\\ \textbf{Quentin Aubecq}\\\textit{avec l'aide de}\\ \_ \\\textit{relu par}\\ \_}
+\date{2026}
+
+\begin{document} 
+
+\subfile{couverture}
+
+\renewcommand*\contentsname{Table des matières}
+\tableofcontents
+
+\break
+
+\section{Équations de Maxwell}
+
+\subsection{Champ électromagnétique : Rappels}
+
+\begin{align*}
+\vec{E} &= \frac{q}{4\pi\epsilon_0 r^2} \hat{r} \\
+        &= \frac{1}{4\pi\epsilon_0} \int_{V'} \frac{(\vec{r} - \vec{r'})}{|\vec{r} - \vec{r'}|} \frac{\rho dv'}{|\vec{r} - \vec{r'}|^2}
+\end{align*}
+
+\begin{align*}
+\vec{B} &= \frac{\mu_0}{4\pi} \int \frac{I d\vec{l} \times \hat{r}}{r^2} \\
+&= \frac{\mu_0}{4\pi} \int_{V'} \frac{\vec{J}(\vec{r'}) \times (\vec{r} - \vec{r'})}{|\vec{r} - \vec{r'}|^3} dv'
+\end{align*}
+
+$$\oint \vec{H} \cdot d\vec{l} = I$$
+
+$$\vec{F} = q(\vec{E} + \vec{v} \times \vec{B})$$
+$$d\vec{F} = I d\vec{l} \times \vec{B}$$
+
+
+
+\end{document}
