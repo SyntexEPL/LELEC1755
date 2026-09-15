@@ -28,10 +28,20 @@
 
 \subsection{Champ électromagnétique : Rappels}
 
+\subsubsection{Loi de Coulomb}
+
+Des charges électriques immobiles créent un champ électrique
+
 \begin{align*}
 \vec{E} &= \frac{q}{4\pi\epsilon_0 r^2} \hat{r} \\
         &= \frac{1}{4\pi\epsilon_0} \int_{V'} \frac{(\vec{r} - \vec{r'})}{|\vec{r} - \vec{r'}|} \frac{\rho dv'}{|\vec{r} - \vec{r'}|^2}
 \end{align*}
+
+Ce champ est conservatif et dérive d'un potentiel
+
+\subsubsection{Lois de Biot-Savart et Ampère}
+
+Des courants constants (charges en MU) créent un champ magnétique constant
 
 \begin{align*}
 \vec{B} &= \frac{\mu_0}{4\pi} \int \frac{I d\vec{l} \times \hat{r}}{r^2} \\
@@ -40,8 +50,201 @@
 
 $$\oint \vec{H} \cdot d\vec{l} = I$$
 
+\subsubsection{Force de Lorentz}
+
 $$\vec{F} = q(\vec{E} + \vec{v} \times \vec{B})$$
 $$d\vec{F} = I d\vec{l} \times \vec{B}$$
+
+\subsubsection{Loi de Lenz-Faraday}
+
+Un flux/champ magnétique variable crée un champ électromoteur (emf), même s'il n'y a pas de conducteur
+
+$$\epsilon_{ind} = \oint\limits_{C \text{fermé!}} \vec{E}_{emf} \cdot \vec{dl} = - \frac{d\Phi_B}{dt} \neq 0$$
+
+\subsubsection{Onde électromagnétique}
+
+Un champ magnétique variable crée un champ électrique (Lenz-Faraday)
+
+Un champ électrique variable crée un champ magnétique (courant de déplacement)
+
+Des charges électriques accélérées sont responsables de l'apparition d'une one électromagnétique
+
+
+\subsection{Équations de Maxwell}
+
+\begin{center} \includegraphics[scale=0.41]{images/maxwell.png} \end{center}
+Les équations 3 et 4 sont des équations couplées
+
+\subsubsection{Conservation de la charge}
+
+\begin{align*}
+\nabla \times \vec{H} &= \vec{J} + \frac{\partial \vec{D}}{\partial t} \\
+\nabla \cdot (\nabla \times \vec{H}) &= \nabla \cdot \vec{J} + \frac{\partial}{\partial t} \nabla \cdot \vec{D} = 0 \\
+\nabla \cdot \vec{J} + \frac{\partial \rho}{\partial t} &= 0 \qquad \Rightarrow \qquad \boxed{\nabla \cdot \vec{J} = - \frac{\partial \rho}{\partial t}}
+\end{align*}
+
+S'il existe un \textbf{flux de courant} non-nul à travers une surface fermée, alors il y a \textbf{accumulation de charges} à l'intérieur de cette surface
+
+$$\boxed{\oint\limits_{S.\text{fermée}} \vec{J} \cdot d\vec{S} = - \frac{\partial}{\partial t} \int\limits_{Vol} \rho \: dv}$$
+
+\subsubsection{Formulation fréquentielle}
+
+Champs sinusoïdaux :
+
+$$\vec{E}(\vec{r}, t) = \mathcal{R}[\vec{\textbf{E}}(\vec{r}) e^{j\omega t}]$$
+
+$\vec{\textbf{E}}(\vec{r})$ est le phaseur complexe représentant le champ sinusoidal
+
+\medskip
+
+Dans le domaine phasoriel (fréquentiel) :
+$$\frac{\partial}{\partial t} \rightarrow j\omega$$
+
+\begin{center} \includegraphics[scale=0.4]{images/maxwell-freq.png} \end{center}
+
+Angle de pertes diélectriques :
+
+$$\tan{\delta} = \frac{\sigma}{\omega \epsilon}$$
+
+Conservation de la charge :
+$$\vec{\nabla}\cdot \vec{J} = -j\omega \rho$$
+
+
+\subsection{Conditions aux interfaces}
+
+\begin{itemize}
+        \item Densité surfacique de charge $\rho_s$ : scalaire, en $[\unit{\coulomb\per\meter\squared}]$
+        \item Densité de courant de surface $\vec{K}$ : vecteur, en $[\unit{\ampere\per\meter}]$ (par mètre de large)
+\end{itemize}
+
+$$\vec{n} \cdot (\vec{D}_1 - \vec{D}_2) = \rho_s$$
+$$\vec{n} \cdot (\vec{B}_1 - \vec{B}_2) = 0$$
+$$\vec{n} \times (\vec{E}_1 - \vec{E}_2) = \vec{0}$$
+$$\vec{n} \times (\vec{H}_1 - \vec{H}_2) = \vec{K}$$
+
+Sens du vecteur normal : de $2$ vers $1$
+
+En appliquant le condition aux interfaces sur le champ $H$ le long d'un contour tangentiel à l'interface, on obtient (après une démonstration) :
+
+$$\boxed{\vec{n} \cdot (\vec{J}_1 - \vec{J}_2) + \text{div}_s \vec{K} + \frac{\partial \rho_s}{\partial t} = 0}$$
+
+($\text{div}_s \vec{K}$ sera toujours égale à $0$ dans les problèmes)
+
+S'il existe un différentiel de courant non-nul entre les 2 côtés d'une interface, alors il y a accumulation de charges à l'interface
+
+
+
+\subsection{Potentiels scalaire et vecteur}
+
+
+\subsubsection{Potentiel électrostatique}
+
+En l'absence de champ $B$ variable (en statique), $E$ est conservatif et dérive d'un potentiel scalaire
+$$\boxed{\Delta \phi = -\int_A^B \vec{E} \cdot d\vec{l} = \phi_B - \phi_A} \quad \Leftrightarrow \quad \vec{E} = -\text{grad } \phi \equiv -\nabla \phi$$
+
+Le potentiel est continu aux interfaces
+
+\medskip
+
+On intègre le champ électrique $r$ jusqu'à l'infini pour trouver
+
+$$\phi = \frac{q}{4\pi \epsilon_0 r} = \frac{1}{4\pi\epsilon_0} \int_{V'} \frac{\rho(\vec{r}') dv'}{|\vec{r} - \vec{r}'|}$$
+
+
+\medskip
+
+Équation de Laplace/Poisson :
+
+$$
+\left.
+\begin{array}{l}
+\vec{E} = -\nabla\phi \\
+\vec{\nabla} \cdot \vec{D} = \rho
+\end{array}
+\right\}
+\Rightarrow \vec{\nabla} \cdot \vec{E} = \frac{\rho}{\varepsilon}
+\Rightarrow \vec{\nabla} \cdot (-\nabla\phi) = \frac{\rho}{\varepsilon}
+\Rightarrow \boxed{\nabla^2\phi = -\frac{\rho}{\varepsilon}}
+$$
+
+Si le champ $E$ est non-conservatif :
+
+$$\oint_{\text{Cfermé!}} \vec{E} \cdot \vec{dl} \neq 0$$
+
+$\Rightarrow$ Ce champ ne dérive pas d'un potentiel, n'est pas créé par des charges stationnaires, et son intégrale sur un contour fermé est une fem
+
+\subsubsection{Force électromotrice induite}
+
+Anneau ouvert :
+
+\begin{itemize}
+        \item Apparition d'un champ électromoteur (dans l'anneau et dans l'entrefer)
+        \item Aucun courant ne circule dans l'anneau $\rightarrow$ le champ $E$ dans l'anneau doit être nul
+        \item Apparition d'un champ électrostatique dans l'anneau qui compense le champ électromoteur (conditions limites aux interfaces de l'entrefer sont bien respectées)
+\end{itemize}
+
+Anneau fermé :
+
+\begin{itemize}
+        \item Apparition d'un champ électromoteur
+        \item Induction d'un courant (qui circule dans le même sens que $E_\text{mot}$)
+\end{itemize}
+
+
+\subsubsection{Potentiel-vecteur}
+
+En présence d'un champ magnétique variable, $E$ ne peut pas uniquement dériver d'un potentiel électrostatique
+
+$$\boxed{\vec{E} = -\nabla \phi - \frac{\partial \vec{A}}{\partial t}}$$
+
+$\vec{A}$ est défini tel que $\nabla\times \vec{A} = \vec{B}$ et est appelé \textbf{potentiel-vecteur}
+
+On peut trouver :
+
+$$\vec{A} = \frac{\mu_0}{4\pi} \int_{V'} \frac{\vec{J}(\vec{r'})}{|\vec{r} - \vec{r'}|} \, dv'$$
+
+
+\subsection{Énergie}
+
+\subsubsection{Rappels}
+
+\begin{itemize}
+        \item Énergie dans une capacité : $U_E = \frac{CV^2}{2}$
+        \item Densité (volumique) d'énergie électrique ($\epsilon_r$ constant) : $E_E = \frac{\epsilon E^2}{2}$
+        \item Énergie dans une inductance : $U_M = \frac{LI^2}{2}$
+        \item Densité (volumique) d'énergie magnétique ($\mu_r$ constant) : $E_M = \frac{B^2}{2\mu}$
+        
+        $E_M = \int_0^{B_\text{max}} H\cdot dB$ si $\mu_r$ non constant (hystérésis)
+        \item Puissance dissipée par une résistance : $P_J = RI^2$
+        \item Densité (volumique) de puissance dissipée par un courant : $W_J = \sigma E^2$
+\end{itemize}
+
+\subsubsection{Théorème de Poynting}
+
+En partant des deux dernières équations de Maxwell, on peut arriver à :
+
+$$\boxed{ \oint_S \vec{E} \times \vec{H} \cdot d\vec{S} = -\int_V \left( \vec{H} \cdot \frac{\partial \vec{B}}{\partial t} + \vec{E} \cdot \frac{\partial \vec{D}}{\partial t} \right) dV - \int_V \vec{E} \cdot \vec{J} dV }$$
+
+En faisant un bilan énergétique, on arrive à
+
+$$\boxed{ -\oint_S \vec{E} \times \vec{H} \cdot d\vec{S} = \frac{\partial}{\partial t} \int_V (E_M + E_E) dV + P_J }$$
+
+Le vecteur de Poynting est $\vec{S} = \vec{E} \times \vec{H}$. Le flux du vecteur de Poynting entrant dans le volume est égal à la variation d'énergie électromagnétique (inductive/capacitive) et la puissance dissipée par effet Joule (résistive)
+
+
+\subsection{Méthodologie de résolution}
+
+\begin{itemize}
+        \item Déterminer la direction des champs
+        \subitem Sur base des lois de Coulomb/Gauss ou Biot-Savart/Ampère
+        \subitem Sur base des symétries existantes
+        \item Déterminer la dépendance (spatiale) des champs
+        \subitem Sur base de la géométrie
+        \subitem Sur base des symétries
+        \item Écrire les équations locales simplifiées
+        \item Écrire les conditions de continuité aux interfaces
+        \item Résoudre
+\end{itemize}
 
 
 
