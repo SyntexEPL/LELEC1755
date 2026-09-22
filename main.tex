@@ -73,6 +73,9 @@ Des charges électriques accélérées sont responsables de l'apparition d'une o
 \subsection{Équations de Maxwell}
 
 \begin{center} \includegraphics[scale=0.41]{images/maxwell.png} \end{center}
+$$\vec{D} = \epsilon \vec{E}$$
+$$\vec{B} = \mu \vec{H}$$
+
 Les équations 3 et 4 sont des équations couplées
 
 \subsubsection{Conservation de la charge}
@@ -122,7 +125,7 @@ $$\vec{n} \cdot (\vec{B}_1 - \vec{B}_2) = 0$$
 $$\vec{n} \times (\vec{E}_1 - \vec{E}_2) = \vec{0}$$
 $$\vec{n} \times (\vec{H}_1 - \vec{H}_2) = \vec{K}$$
 
-Sens du vecteur normal : de $2$ vers $1$
+\textbf{Sens du vecteur normal : de $2$ vers $1$}
 
 En appliquant le condition aux interfaces sur le champ $H$ le long d'un contour tangentiel à l'interface, on obtient (après une démonstration) :
 
@@ -245,6 +248,94 @@ Le vecteur de Poynting est $\vec{S} = \vec{E} \times \vec{H}$. Le flux du vecteu
         \item Écrire les conditions de continuité aux interfaces
         \item Résoudre
 \end{itemize}
+
+\break
+\section{Éléments de circuits localisés}
+
+\subsection{Équivalent EM des lemmes de Kirchhoff}
+
+\begin{center} \includegraphics[scale=0.2]{images/equiv-em-kirchhoff.png} \end{center}
+
+$$\oint \vec{E}\cdot d\vec{l} = -\frac{\partial \Phi_B}{\partial t}$$
+
+\begin{align*}
+\Rightarrow \int_a^b \vec{E} \cdot d\vec{l} + \int_b^c \vec{E} \cdot d\vec{l} + \int_c^d \vec{E} \cdot d\vec{l} + \int_d^a \vec{E} \cdot d\vec{l} &= -\oint \frac{\partial \vec{B}}{\partial t} \cdot d\vec{S} \\
+\int_a^b \frac{\vec{J}_R}{\sigma} \cdot d\vec{l} + \int_b^c \nabla\phi_C \cdot d\vec{l} + \underbrace{\int_c^d \vec{E} \cdot d\vec{l}}_{=0} - V_0 &= \underbrace{-\oint \frac{\partial \vec{A}}{\partial t} \cdot d\vec{l}}_{\text{Stokes}, \nabla \times \vec{A} = \vec{B}} \\
+\Rightarrow \int_a^b \frac{\vec{J}_R}{\sigma} \cdot d\vec{l} + \int_b^c \nabla\phi_C \cdot d\vec{l} + \oint \frac{\partial \vec{A}}{\partial t} \cdot d\vec{l} &= V_0 \Leftrightarrow \underbrace{RI + \frac{1}{C}\int I dt + L \frac{dI}{dt} = V_0}_\text{Loi des mailles}
+\end{align*}
+
+\textbf{Autre formulation} :
+
+\begin{itemize}
+        \item Champ lié aux charges/courants : $\vec{E} = -\nabla \phi - \frac{\nabla \vec{A}}{\partial t}$
+        \item Champ (électromoteur) de source : $\vec{E}_0$
+        
+        (n'existe que dans la source, $V_0 = \int_d^a \vec{E}_0\cdot d\vec{l}$)
+        \item Champ total : $\vec{E}_t = \vec{E}_0 + \vec{E} = \frac{\vec{J}}{\sigma} \Rightarrow \vec{E}_0 = \frac{\vec{J}}{\sigma} - \vec{E}$
+\end{itemize}
+$$\Rightarrow \vec{E}_0 = \frac{\vec{J}}{\sigma} + \nabla \phi + \frac{\partial \vec{A}}{\partial t} \Leftrightarrow V_0 = RI + \frac{1}{C}\int I dt + L \frac{dI}{dt} $$
+
+\textbf{Conservation de la charge (pas de courant de surface)} :
+
+$$
+\vec{n} \cdot (\vec{J}_1 - \vec{J}_2) + \frac{\partial \rho_S}{\partial t} = 0 \Rightarrow -\vec{J}_R + \frac{\partial \rho_S}{\partial t} = 0
+$$
+$$
+\Rightarrow \vec{J}_R = \frac{\partial \rho_S}{\partial t} = \frac{\partial(\vec{n} \cdot \vec{D})}{\partial t} \Leftrightarrow \underbrace{I = C \frac{dV_C}{dt}}_\text{Loi des noeuds aux points b (et c)}
+$$
+
+
+\subsection{Résistance}
+
+$$\vec{J} = \sigma \vec{E}$$
+
+La conductivité $\sigma$
+\begin{itemize}
+        \item est indépendante du champ et du courant
+        \item dépend de la température
+        \item est isotrope dans les métaux
+\end{itemize}
+
+$$R = \frac{L}{\sigma S}$$
+
+De manière générale :
+
+$$\boxed{ R = \frac{\int_a^b \vec{E} \cdot d\vec{l}}{\int_S \vec{J} \cdot d\vec{S}} = \frac{-\int_b^a \vec{E} \cdot d\vec{l}}{\int_S \sigma \vec{E} \cdot d\vec{S}} = \frac{\Delta V_R}{I} }$$
+
+\subsubsection{En régime alternatif}
+
+Dans un bon conducteur en courant alternatif, les champs EM sont rejetés à la surface. Ils ne pénètrent pas au-delà de quelques "profondeurs de peau"
+
+$$\delta = \sqrt{\frac{2}{\omega \mu \sigma}}$$
+
+$\delta$ est la profondeur à laquelle le champ a diminué de $e^{-1}$
+
+
+\subsection{Capacité}
+
+$$C = \frac{Q}{V_0}$$
+
+La capacité exprime le rapport entre la charge et la différence de potentiel
+
+$$\boxed{
+C = - \frac{Q}{\displaystyle\int_c^b \nabla \phi_C \cdot d\vec{l}}
+= - \frac{\displaystyle\int_S \vec{D} \cdot d\vec{S}}{\displaystyle - \int_c^b \vec{E} \cdot d\vec{l}}
+= \frac{\displaystyle\int_S \varepsilon \vec{E} \cdot d\vec{S}}{\displaystyle\int_c^b \vec{E} \cdot d\vec{l}}
+}$$
+
+
+\subsection{Inductance}
+
+$$\boxed{L = \frac{\int_S \vec{B} \cdot d\vec{S}}{I} = \frac{\Phi}{I} = \frac{\int_S \vec{B} \cdot d\vec{S}}{\oint \vec{H} \cdot d\vec{l}}}$$
+
+L'inductance exprime le rapport entre le flux magnétique et le courant qui a créé ce flux
+
+\subsubsection{Inductance mutuelle}
+
+\begin{center} \includegraphics[scale=0.2]{images/inductance-mutuelle.png} \end{center}
+$$L_{12} = L_{21} = \frac{\mu}{4\pi} \int_{C_1} \int_{C_2} \frac{d\vec{l}_1 \cdot d\vec{l}_2}{|\vec{r}_1 - \vec{r}_2|}$$
+
+
 
 
 
