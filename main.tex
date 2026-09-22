@@ -336,6 +336,33 @@ L'inductance exprime le rapport entre le flux magnétique et le courant qui a cr
 $$L_{12} = L_{21} = \frac{\mu}{4\pi} \int_{C_1} \int_{C_2} \frac{d\vec{l}_1 \cdot d\vec{l}_2}{|\vec{r}_1 - \vec{r}_2|}$$
 
 
+\section{Circuits distribués}
+
+\subsection{Limite de la représentation par éléments localisés}
+
+On prend deux cas, le premier deux plaques parallèle avec une plaque (de résistance $R_c$) qui les relie, et le deuxième sans la plaque qui relie les deux plaques parallèles
+
+\begin{center} \includegraphics[scale=0.4]{images/limite-local.png} \end{center}
+
+On décompose en série des champs en fonction de la fréquence
+$$E_x = E_{x0} + E_{x1}\omega + E_{x2}\omega^2 + \dots$$
+$$H_y = H_{y0} + H_{y1}\omega + H_{y2}\omega^2 + \dots$$
+$$E_{xn},H_{yn} = f(z,\text{géométrie})$$
+
+Après un long calcul, on obtient
+
+$$V = I_0R_c [\cosh(j\beta_0 z) - \chi \sinh(j\beta_0 z)]$$
+$$I = aH_y = I_0\left[\cosh(j\beta_0z) - \frac{1}{\chi}\sinh(j\beta_0 z)\right]$$
+
+Avec
+
+$$\beta_0 = \omega \sqrt{\epsilon\mu} \quad ; \quad \eta = \sqrt{\frac{\mu}{\epsilon}} \quad ; \quad \chi = \frac{\eta}{r} \quad ; \quad R_c = b\frac{r}{a}$$
+
+Ce sont des solutions de l'équation d'ondes ($e^{\pm j\beta z}$)
+
+La structure n'est ni une capacité, ni une inductance, mais le siège d'une \textbf{onde de tension} $V(z,t) = f_V(\omega t \pm \beta z) \neq V(t)$ et d'une \textbf{onde de courant} $I(z,t) = f_I(\omega t \pm \beta z) \neq I(t)$
+
+Les différents termes de la décomposition en série sont de la forme $(j\beta_0 l)^n$ et dépendent donc du rapport $l/\lambda$ entre la longueur de l'élément et la longueur d'onde
 
 
 
