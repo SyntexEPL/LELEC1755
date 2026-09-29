@@ -416,9 +416,12 @@ $\rightarrow$ Pas d'onde TEM à l'intérieur d'un tube creux en CEP ($\bar{E}=\b
 
 $\rightarrow$ Pour une onde TEM, il faut au monis $2$ conducteurs
 
-Cela fonctionne seulement dans un milieu sans pertes, le terme $\sigma \bar{E}_t$ est donc nul
+Dans un milieu sans pertes, le terme $\sigma \bar{E}_t$ est nul
 
-<Compléter avec . au lieu de x, slide 8.2>
+Puisque c'est un milieu sans pertes et sans charges, $\nabla_t \cdot \bar{E_t} = 0$
+
+Le rotationnel du champ électrique transverse est nul, il dépend donc d'un potentiel scalaire :
+$$\bar{E_t} \triangleq - \nabla_t \phi \quad \text{ou} \quad \nabla_t^2 \phi = 0$$
 
 
 \bigskip
@@ -437,9 +440,17 @@ $$\bar{H}_t = \frac{\beta}{\omega \mu} \bar{a}_z \times \bar{E}_t$$
 
 \subsubsection{Équation de Helmoltz}
 
-\textbf{Calcul de l'exposant $\beta$} :
+On peut trouver que
+$$\beta = \omega\sqrt{\epsilon\mu} = \omega/c$$
 
-<Slides 9.2, 10.1>
+\medskip
+
+Soit l'admittance du milieu 
+$$Y \triangleq \sqrt{\frac{\epsilon}{\mu}} \quad \text{et} \quad Y_0 = \sqrt{\frac{\epsilon_0}{\mu_0}} \; \text{dans le vide}$$
+On peut écrire le champ magnétique sous la forme
+$$\bar{H}_t = Y\bar{a}_z \times \bar{E}_t = Y\bar{a}_z \times (-\nabla_t \Phi e^{-j\beta z})$$
+$$\textbf{car} \quad \frac{\beta}{\omega\mu} = \frac{\omega\sqrt{\varepsilon\mu}}{\omega\mu} = \sqrt{\frac{\varepsilon}{\mu}} = Y$$
+
 
 \subsubsection{Paramètres fondamentaux}
 
@@ -538,7 +549,7 @@ $$\alpha \approx \frac{\omega}{2} \sqrt{\frac{\mu}{\epsilon}}$$
 
 $\beta$ identique au cas sans pertes, et $\alpha$ atténué par $\sigma$
 
-<Représentation circuits, 17.2>
+%<Représentation circuits, 17.2>
 
 \textbf{Dans un bon conducteur} :
 
