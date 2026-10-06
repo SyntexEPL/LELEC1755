@@ -120,10 +120,10 @@ $$\vec{\nabla}\cdot \vec{J} = -j\omega \rho$$
         \item Densité de courant de surface $\vec{K}$ : vecteur, en $[\unit{\ampere\per\meter}]$ (par mètre de large)
 \end{itemize}
 
-$$\vec{n} \cdot (\vec{D}_1 - \vec{D}_2) = \rho_s$$
-$$\vec{n} \cdot (\vec{B}_1 - \vec{B}_2) = 0$$
-$$\vec{n} \times (\vec{E}_1 - \vec{E}_2) = \vec{0}$$
-$$\vec{n} \times (\vec{H}_1 - \vec{H}_2) = \vec{K}$$
+$$\boxed{\vec{n} \cdot (\vec{D}_1 - \vec{D}_2) = \rho_s}$$
+$$\boxed{\vec{n} \cdot (\vec{B}_1 - \vec{B}_2) = 0}$$
+$$\boxed{\vec{n} \times (\vec{E}_1 - \vec{E}_2) = \vec{0}}$$
+$$\boxed{\vec{n} \times (\vec{H}_1 - \vec{H}_2) = \vec{K}}$$
 
 \textbf{Sens du vecteur normal : de $2$ vers $1$}
 
@@ -287,7 +287,7 @@ $$
 
 \subsection{Résistance}
 
-$$\vec{J} = \sigma \vec{E}$$
+$$\boxed{\vec{J} = \sigma \vec{E}}$$
 
 La conductivité $\sigma$
 \begin{itemize}
@@ -313,7 +313,7 @@ $\delta$ est la profondeur à laquelle le champ a diminué de $e^{-1}$
 
 \subsection{Capacité}
 
-$$C = \frac{Q}{V_0}$$
+$$\boxed{C = \frac{Q}{V_0}}$$
 
 La capacité exprime le rapport entre la charge et la différence de potentiel
 
@@ -330,11 +330,14 @@ $$\boxed{L = \frac{\int_S \vec{B} \cdot d\vec{S}}{I} = \frac{\Phi}{I} = \frac{\i
 
 L'inductance exprime le rapport entre le flux magnétique et le courant qui a créé ce flux
 
+\begin{comment}
 \subsubsection{Inductance mutuelle}
 
 \begin{center} \includegraphics[scale=0.2]{images/inductance-mutuelle.png} \end{center}
 $$L_{12} = L_{21} = \frac{\mu}{4\pi} \int_{C_1} \int_{C_2} \frac{d\vec{l}_1 \cdot d\vec{l}_2}{|\vec{r}_1 - \vec{r}_2|}$$
+\end{comment}
 
+\break
 
 \section{Circuits distribués}
 
@@ -464,11 +467,11 @@ $$\textbf{car} \quad \frac{\beta}{\omega\mu} = \frac{\omega\sqrt{\varepsilon\mu}
 \end{itemize}
 
 \textbf{Impédance caractéristique} :
-$$Z_C = \frac{1}{Y_C} \triangleq \frac{V_0}{I_0}$$
+$$Z_c = \frac{1}{Y_c} \triangleq \frac{V_0}{I_0}$$
 
 \begin{itemize}
-        \item $Z_C$ n'est pas l'impédance d'onde
-        \item $Z_C$ est le rapport des aplitudes des ondes de tension et de courant \textbf{se déplacant dans un même sens}
+        \item $Z_c$ n'est pas l'impédance d'onde
+        \item $Z_c$ est le rapport des aplitudes des ondes de tension et de courant \textbf{se déplacant dans un même sens}
 \end{itemize}
 
 \textbf{Puissance électromagnétique traversant le plan transverse} :
@@ -492,17 +495,17 @@ $$
         \item \textbf{Capacité linéique} :
         
         $$C = \frac{\rho_l}{V_0}$$
-        $$Z_C = \frac{V_0}{I_0} = \frac{\rho_l / C}{Y \rho_1 / \epsilon} = \frac{Z\epsilon}{C} \qquad \text{ou} \qquad Z_C = \frac{\sqrt{\epsilon\mu}}{C} = \frac{1}{vC}$$
+        $$Z_c = \frac{V_0}{I_0} = \frac{\rho_l / C}{Y \rho_1 / \epsilon} = \frac{Z\epsilon}{C} \qquad \text{ou} \qquad Z_c = \frac{\sqrt{\epsilon\mu}}{C} = \frac{1}{vC}$$
 
         \item \textbf{Inductance linéique} :
         
         $$L = \frac{\phi}{I_0}$$
-        $$L = \mu Y \frac{V_0}{I_0} = \mu Y Z_C = \frac{Z_C}{v}$$
+        $$L = \mu Y \frac{V_0}{I_0} = \mu Y Z_c = \frac{Z_c}{v}$$
 \end{itemize}
 
 Pour des lignes sans pertes, on obtient :
 
-$$\boxed{Z_C = \sqrt{L/C}} \qquad \boxed{v = 1/\sqrt{LC}} \qquad \boxed{LC = \epsilon \mu} \qquad \boxed{\beta = \omega\sqrt{LC}}$$
+$$\boxed{Z_c = \sqrt{L/C}} \qquad \boxed{v = 1/\sqrt{LC}} \qquad \boxed{LC = \epsilon \mu} \qquad \boxed{\beta = \omega\sqrt{LC}}$$
 
 
 \subsection{Lignes de transmission avec pertes}
@@ -567,7 +570,175 @@ Circuit équivalent d'une ligne TEM :
         \item Pertes conducteurs $\rightarrow$ R (généralement faible)
 \end{itemize}
 
+\textbf{Circuit équivalent} infinitésimal (circuit distribué) pour une longueur $dz$ :
+\begin{center} \includegraphics[scale=0.5]{images/circuit-dz.png} \end{center}
+
 \begin{center} \includegraphics[scale=0.4]{images/ligne-perte.png} \end{center}
+
+
+\break
+
+\section{Lignes de transmission}
+
+\subsection{Quadripôle équivalent}
+
+\subsubsection{Circuit distribué}
+
+\begin{center} \includegraphics[scale=0.4]{images/ligne-quadri.png} \end{center}
+
+Lignes uniformes (Z, Y constantes) :
+$$Z = R + j\omega L \qquad ; \qquad Y = G + j\omega C$$
+
+$$\left\{\begin{array}{l}
+-\frac{dV(z, p)}{dz}=Z I(z, p) \\
+-\frac{dI(z, p)}{dz}=Y V(z, p)
+\end{array}\right. \quad \text{On dérive} \rightarrow \quad \left\{\begin{array}{l}
+-\frac{d^2V(z, p)}{dz^2}=Z \frac{dI(z, p)}{dz} \\
+-\frac{d^2I(z, p)}{dz^2}=Y \frac{dV(z, p)}{dz}
+\end{array}\right.$$
+
+On trouve donc l'équation des télégraphistes :
+
+$$\boxed{\begin{cases}
+\frac{d^2 V}{d z^2} = ZYV \\
+\frac{d^2 I}{d z^2} = ZYI
+\end{cases}}$$
+
+\subsubsection{Ondes de tension et de courant}
+
+Solution générale :
+\begin{align*}
+V(z) &= V_{+} e^{-\sqrt{ZY} z} + V_{-} e^{\sqrt{ZY} z} \\
+I(z) &= I_{+} e^{-\sqrt{ZY} z} + I_{-} e^{\sqrt{ZY} z}
+\end{align*}
+
+\begin{align*}
+I_+ &= \sqrt{\frac{Y}{Z}} \, V_+ \\
+I_- &= -\sqrt{\frac{Y}{Z}} \, V_-
+\end{align*}
+
+Impédance caractéristique et exposant de propagation :
+$$
+\boxed{Z_c \triangleq \sqrt{\frac{Z}{Y}} = R_c + jX_c} \qquad ; \qquad
+\boxed{\gamma \triangleq \sqrt{ZY} = \alpha + j\beta}
+$$
+
+\subsubsection{Ligne de longueur donnée}
+\label{ligne-longueur}
+
+<...>
+
+Une ligne de transimission n'a qu'une matrice ABCD
+
+
+\subsubsection{Impédance d'entrée d'une ligne chargée}
+
+$$Z_{in} = \frac{V_1}{I_1}\Bigg|_{Z_L} = \frac{B + A Z_L}{D + C Z_L} = \boxed{Z_c \frac{Z_c + Z_L \coth (\gamma L)}{Z_L + Z_c \coth (\gamma L)}}$$
+\begin{itemize}
+        \item Ligne ouverte : $\;\;\;\qquad\quad Z_L = \infty \rightarrow Z_{in} = Z_c \coth (\gamma L)$
+        \item Ligne court-circuitée : $\quad Z_L = 0 \rightarrow Z_{in} = Z_c \tanh (\gamma L)$
+        \item Ligne "adaptée" : $\quad\qquad Z_L = Z_c \rightarrow Z_{in} = Z_c$
+\end{itemize}
+
+$$Z(z) = \frac{V(z)}{I(z)} = -\frac{V_2 \cosh(\gamma z) + Z_c I_2 \sinh(\gamma z)}{Y_c V_2 \sinh(\gamma z) + I_2 \cosh(\gamma z)}$$
+
+Si $V_2 = Z_L I_2$ :
+$$ Z(z) = Z_c \frac{Z_c - Z_L \coth(\gamma z)}{Z_L - Z_c \coth(\gamma z)} $$
+
+
+\subsection{Réflexion et taux d'ondes stationnaires}
+
+\subsubsection{Onde progressive}
+
+La solution générale des équations (voir \ref{ligne-longueur}) est constituée de deux ondes progressives, l'une vers les $z>0$ et l'autre vers les $z<0$.
+
+<slide 8.1>
+
+\subsubsection{Cas général}
+
+$$V(z) = \underbrace{V_+ e^{-\gamma z}}_\text{incidente} + \underbrace{V_- e^{\gamma z}}_\text{réfléchie}$$
+
+\begin{enumerate}
+        \item \textbf{Ligne ouverte à son extrémité} $\Rightarrow I_2 = 0 = V_+-V_-$
+
+        $v(z,t) = 2V_+ \cos(\omega t)\cos(\beta z) \qquad \rightarrow \quad \text{Apparition d'une onde purement stationnaire}$
+        
+        $i(z,t) = 2Y_c V_+ \sin(\omega t) \sin(\beta z)$
+
+        \item \textbf{Ligne court-circuitée à son extrémité} $\Rightarrow V_2 = 0 = V_++V_-$
+
+        $v(z,t) = 2V_+ \sin(\omega t)\sin(\beta z) \qquad \rightarrow \quad \text{Apparition d'une onde purement stationnaire}$
+        
+        $i(z,t) = 2Y_c V_+ \cos(\omega t) \cos(\beta z)$
+
+        \item \textbf{Ligne chargée à son extrémité} $\Rightarrow V_2 = -Z_L I_2$
+
+        <...>
+\end{enumerate}
+
+\subsubsection{Facteur de réflexion}
+
+Le facteur $\Gamma(z)$ est le paramètre qui permet de tout retrouver
+
+$$|\Gamma(z_1)| = |\Gamma(z_2)| e^{2\alpha(z_1 - z_2)}$$
+$$\arg \Gamma(z_1) = \arg \Gamma(z_2) + 2\beta(z_1 - z_2)$$
+
+\begin{center} \includegraphics[scale=0.4]{images/fact-reflex.png} \end{center}
+
+$2\beta \Delta z = 2\pi \quad \rightarrow \quad \Delta z = \frac{\pi}{\beta} = \frac{\lambda}{2}$
+
+\subsubsection{Taux d'ondes stationnaires}
+
+En l'absence de pertes, l'amplitude de $\Gamma(z)$ est constante
+$$|V(z)| = |V_+||1 + \Gamma(z)| \qquad ; \qquad |I(z)| = |I_+||1-\Gamma(z)|$$
+$$\Rightarrow \quad |V(z)|_\text{max} = |V_+| (1 + |\Gamma(z)|) \qquad ; \qquad |V(z)|_\text{min} = |V_+|(1 - |\Gamma(z)|)$$
+
+$$\boxed{\text{TOS ou VSWR} \triangleq \frac{|V(z)|_\text{max}}{|V(z)|_\text{min}} = \frac{1 + |\Gamma(z)|}{1 - |\Gamma(z)|} = s}$$
+
+$$|\Gamma(z)| = \frac{s-1}{s+1}$$
+
+
+
+\subsection{Adaptation au sens des lignes de transimission}
+
+\subsubsection{Puissance}
+
+<Slide 12.2>
+
+\subsubsection{Lignes sans pertes}
+
+<Slide 13.1>
+
+Pour une ligne \textbf{sans pertes}, on peut écrire
+$$R_e(P) = \frac{1}{2} |V_+|^2 (1 - |\Gamma|^2)/R_c$$
+si $\Gamma = 0$, toute la puissance incidente est transmise
+
+<????>
+
+\subsubsection{Abaque de Smith}
+
+On décompose $\frac{Z(z)}{R_c} = R + jX$, et $\Gamma(z) = a + jb$
+
+\begin{center} \includegraphics[scale=0.4]{images/smith.png} \end{center}
+
+\begin{itemize}
+        \item Chaque cercle correspond à une valeur de $R$
+        \item Chaque courbe correspond à une valeur de $X$
+        \item $\Gamma$ est le point correspondant sur le plan complexe
+\end{itemize}
+
+
+\subsubsection{Techniques d'adaptation}
+
+Objectifs de l'adaptation :
+
+Annuler le coefficient de réflexion à l'entrée de la ligne, de manière à ce que le maximum de puissance soit délivré à la charge
+
+
+
+
+
+
 
 
 \end{document}
