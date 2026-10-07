@@ -444,7 +444,7 @@ $$\bar{H}_t = \frac{\beta}{\omega \mu} \bar{a}_z \times \bar{E}_t$$
 \subsubsection{Équation de Helmoltz}
 
 On peut trouver que
-$$\beta = \omega\sqrt{\epsilon\mu} = \omega/c$$
+$$\boxed{\beta = \omega\sqrt{\epsilon\mu} = \omega/c = \frac{2\pi}{\lambda}}$$
 
 \medskip
 
@@ -589,6 +589,7 @@ Circuit équivalent d'une ligne TEM :
 Lignes uniformes (Z, Y constantes) :
 $$Z = R + j\omega L \qquad ; \qquad Y = G + j\omega C$$
 
+\begin{comment}
 $$\left\{\begin{array}{l}
 -\frac{dV(z, p)}{dz}=Z I(z, p) \\
 -\frac{dI(z, p)}{dz}=Y V(z, p)
@@ -596,8 +597,9 @@ $$\left\{\begin{array}{l}
 -\frac{d^2V(z, p)}{dz^2}=Z \frac{dI(z, p)}{dz} \\
 -\frac{d^2I(z, p)}{dz^2}=Y \frac{dV(z, p)}{dz}
 \end{array}\right.$$
+\end{comment}
 
-On trouve donc l'équation des télégraphistes :
+En résolvant le circuit, on peut trouver l'équation des télégraphistes :
 
 $$\boxed{\begin{cases}
 \frac{d^2 V}{d z^2} = ZYV \\
@@ -606,16 +608,16 @@ $$\boxed{\begin{cases}
 
 \subsubsection{Ondes de tension et de courant}
 
-Solution générale :
+En résolvant l'équantion des télégraphistes, on trouve
 \begin{align*}
 V(z) &= V_{+} e^{-\sqrt{ZY} z} + V_{-} e^{\sqrt{ZY} z} \\
 I(z) &= I_{+} e^{-\sqrt{ZY} z} + I_{-} e^{\sqrt{ZY} z}
 \end{align*}
 
-\begin{align*}
-I_+ &= \sqrt{\frac{Y}{Z}} \, V_+ \\
-I_- &= -\sqrt{\frac{Y}{Z}} \, V_-
-\end{align*}
+avec
+$$I_+ = \sqrt{\frac{Y}{Z}} \, V_+ \qquad ; \qquad
+I_- = -\sqrt{\frac{Y}{Z}} \, V_-
+$$
 
 Impédance caractéristique et exposant de propagation :
 $$
@@ -623,12 +625,32 @@ $$
 \boxed{\gamma \triangleq \sqrt{ZY} = \alpha + j\beta}
 $$
 
+On a donc
+\label{eq-onde}
+$$\boxed{\begin{cases}
+V(z) = V_+ e^{-\gamma z} + V_- e^{\gamma z} \\
+I(z) = Y_c \left[ V_+ e^{-\gamma z} - V_- e^{\gamma z} \right]
+\end{cases}}$$
+
+
 \subsubsection{Ligne de longueur donnée}
-\label{ligne-longueur}
 
-<...>
+\begin{center} \includegraphics[scale=0.4]{images/ligne-l.png} \end{center}
+$$V_1 = V(-L) \qquad ; \qquad V_2 = V(0) \qquad I_1 = I(-L) \qquad ; \qquad I_2 = -I(0)$$
 
-Une ligne de transimission n'a qu'une matrice ABCD
+On peut trouver :
+$$\boxed{\begin{bmatrix} V_1\\ I_1\end{bmatrix} = \begin{bmatrix}
+\cosh(\gamma L) & Z_c \sinh(\gamma L) \\
+Y_c \sinh{\gamma L} & \cosh(\gamma L)
+\end{bmatrix} \begin{bmatrix}
+        V_2 \\ - I_2
+\end{bmatrix}} = \begin{bmatrix}
+A & B \\
+C & D
+\end{bmatrix} \begin{bmatrix}
+V_2 \\ - I_2
+\end{bmatrix} $$
+
 
 
 \subsubsection{Impédance d'entrée d'une ligne chargée}
@@ -640,19 +662,31 @@ $$Z_{in} = \frac{V_1}{I_1}\Bigg|_{Z_L} = \frac{B + A Z_L}{D + C Z_L} = \boxed{Z_
         \item Ligne "adaptée" : $\quad\qquad Z_L = Z_c \rightarrow Z_{in} = Z_c$
 \end{itemize}
 
+\subsubsection{Impédance le long de la ligne}
+
 $$Z(z) = \frac{V(z)}{I(z)} = -\frac{V_2 \cosh(\gamma z) + Z_c I_2 \sinh(\gamma z)}{Y_c V_2 \sinh(\gamma z) + I_2 \cosh(\gamma z)}$$
 
-Si $V_2 = Z_L I_2$ :
+Si $V_2 = Z_L I_2$ (ligne chargé par une impédance $Z_L$) :
 $$ Z(z) = Z_c \frac{Z_c - Z_L \coth(\gamma z)}{Z_L - Z_c \coth(\gamma z)} $$
+
 
 
 \subsection{Réflexion et taux d'ondes stationnaires}
 
 \subsubsection{Onde progressive}
 
-La solution générale des équations (voir \ref{ligne-longueur}) est constituée de deux ondes progressives, l'une vers les $z>0$ et l'autre vers les $z<0$.
+La solution générale des équations (voir \ref{eq-onde}) est constituée de deux ondes progressives, l'une vers les $z>0$ et l'autre vers les $z<0$.
 
-<slide 8.1>
+Pour une ligne de longueur infinie, ou pour une ligne adaptée, $V_- = 0$
+$$\begin{cases}
+V(z) = V_+ e^{-\gamma z} \\
+Z_c I(z) = V_+ e^{-\gamma z}
+\end{cases}
+\Rightarrow
+Z(z) = Z_c
+$$
+
+On a une onde progressive pure
 
 \subsubsection{Cas général}
 
@@ -673,7 +707,27 @@ $$V(z) = \underbrace{V_+ e^{-\gamma z}}_\text{incidente} + \underbrace{V_- e^{\g
 
         \item \textbf{Ligne chargée à son extrémité} $\Rightarrow V_2 = -Z_L I_2$
 
-        <...>
+        On définit un facteur de réflexion en tout $z$ :
+        $$\boxed{\Gamma(z) \triangleq \frac{V_- e^{\gamma z}}{V_+ e^{-\gamma z}} = \frac{V_-}{V_+} e^{2\gamma z}}$$
+
+        $$\Rightarrow\begin{cases}
+        V(z) = V_+ e^{-\gamma z} \left[ 1 + \Gamma(z) \right] \\
+        I(z) = Y_c V_+ e^{-\gamma z} \left[ 1 - \Gamma(z) \right]
+        \end{cases}
+        \quad \Rightarrow \quad
+        Z(z) = Z_c \frac{1 + \Gamma(z)}{1 - \Gamma(z)} = \frac{V(z)}{I(z)}$$
+
+        Lien avec la charge $Z_L$ en $z=0$
+        $$\Gamma(0) = \Gamma_L = \frac{V_-}{V_+} \qquad \text{or} \quad V(0) = V_2 = V_+ + V_- \quad \text{et} \quad I(0) = I_2 = Y_c(V_+ - V_-)$$
+        $$\Rightarrow \Gamma_L = \frac{Z_L - Z_c}{Z_L + Z_c} \Rightarrow \boxed{\Gamma(z) = \frac{V_-}{V_+} e^{2\gamma z} = \Gamma_L e^{2\gamma z} = \frac{Z_L - Z_c}{Z_L + Z_c} e^{2\gamma z}}$$
+        La ligne est le siège d'une onde dont l'\textbf{enveloppe est stationnaire} :
+        \begin{align*}
+        |V(z)| &= e^{-\alpha z} |V_+| |1 + \Gamma(z)|  \\
+        |I(z)| &= e^{-\alpha z} |Y_C| |V_+| |1 - \Gamma(z)|
+        \end{align*}
+        $\rightarrow$ L'amplitude de la tension est \textbf{maximale} aux positions $z$ telles que $\Gamma(z)$ est \textbf{réel positif}
+        
+        $\rightarrow$ L'amplitude de la tension est \textbf{minimale} aux positions $z$ telles que $\Gamma(z)$ est \textbf{réel négatif}
 \end{enumerate}
 
 \subsubsection{Facteur de réflexion}
@@ -703,17 +757,40 @@ $$|\Gamma(z)| = \frac{s-1}{s+1}$$
 
 \subsubsection{Puissance}
 
-<Slide 12.2>
+\begin{align*}
+P &= \frac{1}{2} V I^* \\
+&= \frac{1}{2} V_+ e^{-\gamma z} [1 + \Gamma(z)] Y_c^* V_+^* e^{-\gamma^* z} [1 - \Gamma^*(z)] \\
+&= \frac{1}{2} |V_+|^2 Y_c^* e^{-2\alpha z} \left(1 - |\Gamma|^2 + 2j \operatorname{Im} \Gamma\right)
+\end{align*}
+
+\begin{equation*}
+\operatorname{Re}(P) = \frac{1}{2} |V_+|^2 \operatorname{Re} Y_c \, e^{-2\alpha z} \left( 1 - |\Gamma|^2 + 2 \operatorname{Im} \Gamma \frac{\operatorname{Im} Y_c}{\operatorname{Re} Y_c} \right)
+\end{equation*}
+
 
 \subsubsection{Lignes sans pertes}
 
-<Slide 13.1>
+Pour une ligne \textbf{sans pertes} ($\gamma=j\beta$ et $Z_c = R_c$), on peut écrire
 
-Pour une ligne \textbf{sans pertes}, on peut écrire
-$$R_e(P) = \frac{1}{2} |V_+|^2 (1 - |\Gamma|^2)/R_c$$
+\begin{align*}
+V(z) &= V_+ e^{-j\beta z} + V_- e^{j\beta z} \\
+R_c I(z) &= V_+ e^{-j\beta z} - V_- e^{j\beta z}
+\end{align*}
+
+$$\boxed{Z(z) = R_c \frac{Z_L - jR_c \tan \beta z}{R_c - jZ_L \tan \beta z} = R_c \frac{Z_L\cos(\beta z) - jR_c\sin(\beta z)}{R_c\cos(\beta z) + j Z_L \sin(\beta z)}}$$
+
+
+
+
+<13.1>
+
+$$R_e(P) = \frac{1}{2} |V_+|^2 \underbrace{(1 - |\Gamma|^2)}_{>0}/R_c$$
+
+$$\Rightarrow |\Gamma_L| \leq 1 \quad \text{en tout point de la ligne}$$
+
 si $\Gamma = 0$, toute la puissance incidente est transmise
 
-<????>
+Adapter au sens des lignes de transmission, c'est annuler le coefficient de réflexion au générateur et obtenir $Z_{IN}=R_S$
 
 \subsubsection{Abaque de Smith}
 
