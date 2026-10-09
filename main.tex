@@ -779,10 +779,13 @@ R_c I(z) &= V_+ e^{-j\beta z} - V_- e^{j\beta z}
 
 $$\boxed{Z(z) = R_c \frac{Z_L - jR_c \tan \beta z}{R_c - jZ_L \tan \beta z} = R_c \frac{Z_L\cos(\beta z) - jR_c\sin(\beta z)}{R_c\cos(\beta z) + j Z_L \sin(\beta z)}}$$
 
+\begin{align*}
+\Gamma(z) &= \frac{V_{-}}{V_{+}} e^{2j\beta z} = \Gamma_{L} e^{2j\beta z} \\
+\Gamma_{L} &= \frac{Z_{L} / Z_{c} - 1}{Z_{L} / Z_{c} + 1} = \frac{Z_{L} - Z_{c}}{Z_{L} + Z_{c}}
+\end{align*}
 
+$$\Gamma(z) = \frac{Z(z) - R_c}{Z(z) + R_c}$$
 
-
-<13.1>
 
 $$R_e(P) = \frac{1}{2} |V_+|^2 \underbrace{(1 - |\Gamma|^2)}_{>0}/R_c$$
 
@@ -794,6 +797,7 @@ Adapter au sens des lignes de transmission, c'est annuler le coefficient de réf
 
 \subsubsection{Abaque de Smith}
 
+\begin{comment}
 On décompose $\frac{Z(z)}{R_c} = R + jX$, et $\Gamma(z) = a + jb$
 
 \begin{center} \includegraphics[scale=0.4]{images/smith.png} \end{center}
@@ -803,14 +807,20 @@ On décompose $\frac{Z(z)}{R_c} = R + jX$, et $\Gamma(z) = a + jb$
         \item Chaque courbe correspond à une valeur de $X$
         \item $\Gamma$ est le point correspondant sur le plan complexe
 \end{itemize}
+\end{comment}
 
+Méthode graphique pour calculer l'impédance $Z_{in}$ en utilisant l'abaque de Smith :
+\begin{itemize}
+        \item Calculer l'impédance de charge normalisée $z_L = \frac{Z_L}{Z_C}$
+        \item Calculer l'impédance d'entrée normalisée $z_{in}$ :
+        \begin{itemize}
+                \item Placer l'impédance de charge normalisée $z_L$ dans l'abaque selon ses parties réelle et imaginaire
+                \item Faire une rotation de ce point autour du centre de l'abaque, dans le sens horloger (on va vers le générateur), de $\theta = 4\pi \frac{l}{\lambda}$
+        \end{itemize}
+        \item Calculer l'impédance d'entrée $Z_{in} = z_{in} Z_C$
+\end{itemize}
 
-\subsubsection{Techniques d'adaptation}
-
-Objectifs de l'adaptation :
-
-Annuler le coefficient de réflexion à l'entrée de la ligne, de manière à ce que le maximum de puissance soit délivré à la charge
-
+Astuce : Dans ce cours quand on doit trouver un $Z_C$ ou $Y_C$, il sera uniquement réel
 
 
 
