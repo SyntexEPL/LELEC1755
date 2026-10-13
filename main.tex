@@ -823,9 +823,117 @@ Méthode graphique pour calculer l'impédance $Z_{in}$ en utilisant l'abaque de 
 Astuce : Dans ce cours quand on doit trouver un $Z_C$ ou $Y_C$, il sera uniquement réel
 
 
+\subsection{Étude des lignes TEM sans pertes en régime transitoire}
+
+\subsubsection{Équation des télégraphistes}
+
+\begin{center} \includegraphics[scale=0.4]{images/tem-tran.png} \end{center}
+\begin{align*}
+\frac{\partial v}{\partial z} &= -Ri - L\frac{\partial i}{\partial t} \\
+\frac{\partial i}{\partial z} &= -Gv - C\frac{\partial v}{\partial t}
+\end{align*}
+
+Pour une ligne sans pertes $R = G = 0$, on trouve
+
+$$\boxed{\frac{\partial^2 v}{\partial z^2} = LC \frac{\partial^2 v}{\partial t^2}} \qquad \boxed{\frac{\partial^2 i}{\partial z^2} = LC \frac{\partial^2 i}{\partial t^2}} \qquad LC = \frac{1}{c^2} \qquad c = \frac{1}{\sqrt{LC}} \qquad Y_c = \sqrt{\frac{C}{L}}$$
+
+\begin{comment}
+On pose $\tau \triangleq \frac{z}{c}$, on obtient
+\begin{align*}
+        v(t,\tau) &= f_+(t-\tau) + f_-(t+\tau)\\
+        i(t,\tau) &= g_+(t-\tau) + g_-(t+\tau)
+\end{align*}
+\end{comment}
+
+Solutions générales :
+
+$$\boxed{\begin{cases}
+v(z, t) &= f_+\left(t - \frac{z}{c}\right) + f_-\left(t + \frac{z}{c}\right) \\
+i(z, t) &= G_c \left[ f_+\left(t - \frac{z}{c}\right) - f_-\left(t + \frac{z}{c}\right) \right]
+\end{cases}}$$
+
+\subsubsection{Réflexions aux accès}
+
+La forme des ondes dépend des conditions limites :
+\begin{itemize}
+        \item Des circuits présents aux deux extrémités
+        \item Des distributions temporelles et spatiales des sources éventuelles de tension et de courant
+        \item Des distriutions spatiales de tension et de courant à l'isntant initial
+\end{itemize}
+
+La ligne présente à chaque onde progressive une impédance $R_c$
+$$v(z,t) = f_+\left(t - \frac{z}{c}\right) \quad ; \quad i(z,t) = G_c f_+\left(t - \frac{z}{c}\right) \quad ; \quad \frac{v(z,t)}{i(z,t)} = R_c = \frac{1}{G_c}$$
+
+Relation entre deux ondes progressives :
+$$f_-\left(t + \frac{z}{c}\right) = f_+\left(t - \frac{z}{c}\right) - R_c i(z,t)$$
+
+\begin{center} \includegraphics[scale=0.4]{images/analyse-temporelle.png} \end{center}
 
 
 
+\subsubsection{Analyse temporelle}
+
+\begin{enumerate}
+        \item Pour $t<0$, la source est d'amplitude nulle
+
+        \item En $t=0$, on branche la source, les ondes progressives sont d'amplitude nulle, sauf éventuellement en $z=0$
+        $$f_+\left(-\frac{z}{c}\right) = 0 = f_-\left(\frac{z}{c}\right)$$
+
+        \item Pour $0\leq t \leq \frac{L}{c}$, à l'entrée de la ligne ($z=0$)
+        $$v(0,t) = f_+(t) \qquad ; \qquad i(0,t) = G_c f_+(t)$$
+        $$f_+(t) = \frac{v_s(t)}{1 + G_c R_s} = \frac{R_c}{R_c + R_s}v_s(t)$$
+
+        L'onde $f_+$ va se propager vers les $z>0$, on ne verra rien revenir à la source avant $2L/c$
+
+        Pendant l'intervalle de temps de $0$ à $2L/c$, le générateur ignore la charge, il ne voit que $R_c$
+
+        \item Pour $0\leq t\leq \frac{L}{c}$, ailleurs sur la ligne
+        
+        $$v(z,t) = f_+\left(t - \frac{z}{c}\right) \qquad ; \qquad i(z,t) = G_c f_+(t - \frac{z}{c})$$
+        $$f_+\left(t - \frac{z}{c}\right) = \frac{v_s \left(t - \frac{z}{c}\right)}{1 + G_c R_s}$$
+
+        \item A l'extrémité de la ligne :
+        \begin{enumerate}
+                \item Si la charge est un circuit ouvert $i_L = 0$
+                $$v_L(t) = 2f_+(t - L/c) \qquad ; \qquad f_-(t + L/c) = f_+(t-L/c)$$
+                \item Si la charge est un court-circuit $v_L = 0$
+                $$i_L(t) = 2G_c f_+(t-L/c) \qquad ; \qquad f_-(t + L/c) = -f_+(t - L/c)$$
+                \item Si la charge est adaptée
+                $$f_-(t + L/c) = 0$$
+                \item Pour une charge quelconque
+                $$f_-(t + L/c) = f_+(t - L/c) - R_c i(L,t) \rightarrow (1 + R_c F) v_L(t) = 2f_+(t - L/c)$$
+                \item Pour une charge résistive
+                $$v_L(t) = R_L i_L(t) = f_+(t - L/c) + f_-(t + L/c)$$
+                $$\boxed{f_- = \frac{R_L - R_c}{R_L + R_c} f_+}$$
+        \end{enumerate}
+
+        \item Pour $L/c \leq t \leq 2 L/c$
+        
+        A l'entrée de la ligne ($z=0$) :
+        $$f_+(t - z/c) = \frac{v_s (t - z/c)}{1 + G_c R_s}$$
+        Ailleurs, l'onde réfléchie est égale à sa valeur en $L$ retardée de $(z-L)/c$ :
+        $$f_-(t + z/c) = f_+\left(t - \frac{L}{c} - \frac{L - z}{c}\right) - R_c i_L\left(t - \frac{L - z}{c}\right)$$
+
+        \item En $t = 2L/c$, l'onde réfléchie revient à l'entrée de la ligne
+        
+        $$f_+(t) = R_c i_1(t) + f_-(t) = \underbrace{\frac{v_s(t)}{1 + G_c R_s}}_\text{Onde émise par la source} + \underbrace{\frac{R_s - R_c}{R_s + R_c} f_-(t)}_\text{Réflexion de $f_-$ sur le générateur}$$
+\end{enumerate}
+
+\subsubsection{Bilan de puissance associé}
+
+Puissance dissipée (effet Joule) :
+$$\boxed{Ri^2 + Gv^2}$$
+
+Énergie électrique et magnétique :
+$$\boxed{w_m = \frac{Li^2}{2} \quad ; \quad w_e = \frac{Cv^2}{2}}$$
+
+\subsection{Réflectométrie}
+
+Détection de défauts sur une ligne de transmission (on envoie un signal et on analyse ce qui revient)
+\begin{itemize}
+        \item Temporelle : Impulsion, Echelon, Gaussienne
+        \item Fréquentiell : Signal modulé en fréquence (radar)
+\end{itemize}
 
 
 \end{document}
