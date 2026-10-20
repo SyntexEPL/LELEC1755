@@ -779,6 +779,8 @@ R_c I(z) &= V_+ e^{-j\beta z} - V_- e^{j\beta z}
 
 $$\boxed{Z(z) = R_c \frac{Z_L - jR_c \tan \beta z}{R_c - jZ_L \tan \beta z} = R_c \frac{Z_L\cos(\beta z) - jR_c\sin(\beta z)}{R_c\cos(\beta z) + j Z_L \sin(\beta z)}}$$
 
+(Rappel : $\beta = 2\pi / \lambda$)
+
 \begin{align*}
 \Gamma(z) &= \frac{V_{-}}{V_{+}} e^{2j\beta z} = \Gamma_{L} e^{2j\beta z} \\
 \Gamma_{L} &= \frac{Z_{L} / Z_{c} - 1}{Z_{L} / Z_{c} + 1} = \frac{Z_{L} - Z_{c}}{Z_{L} + Z_{c}}
@@ -821,6 +823,10 @@ Méthode graphique pour calculer l'impédance $Z_{in}$ en utilisant l'abaque de 
 \end{itemize}
 
 Astuce : Dans ce cours quand on doit trouver un $Z_C$ ou $Y_C$, il sera uniquement réel
+
+\medskip
+
+On peut choisir de prendre l'abaque en impédance ou en admittance. Si l'abaque est en impédance/admittance, pour trouver l'admittance/impédance correspondant à un point, il suffit de prendre le point radialement opposé
 
 
 \subsection{Étude des lignes TEM sans pertes en régime transitoire}
@@ -934,6 +940,180 @@ Détection de défauts sur une ligne de transmission (on envoie un signal et on 
         \item Temporelle : Impulsion, Echelon, Gaussienne
         \item Fréquentiell : Signal modulé en fréquence (radar)
 \end{itemize}
+
+
+\section{Guides d'ondes}
+
+\subsection{Types de lignes de transmission}
+
+\begin{itemize}
+        \item Câble coaxial
+
+        \item Ligne bifilaire
+        
+        \item Ligne microruban :
+        \begin{center} \includegraphics[scale=0.3]{images/microruban.png} \end{center}
+
+        \item Guide coplanaire :
+        \begin{center} \includegraphics[scale=0.4]{images/coplanaire.png} \end{center}
+\end{itemize}
+
+Guides d'ondes :
+
+\begin{center} \includegraphics[scale=0.35]{images/guide.png} \end{center}
+
+
+\subsection{Ondes guidées}
+
+\subsubsection{Rappel des équations de Maxwell}
+
+\begin{align*}
+\nabla \times \bar{E} &= -j\omega\mu\bar{H} & \nabla \cdot \bar{E} &= 0 \\
+\nabla \times \bar{H} &= (\sigma + j\omega\varepsilon)\bar{E} & \nabla \cdot \bar{H} &= 0
+\end{align*}
+
+$\bar{E}, \bar{H}$ dépendent de la position
+
+On défini 
+
+$$jk = \sqrt{j\omega \mu (\sigma + j\omega \epsilon)}$$
+
+$$Y = 1/Z = \sqrt{(\sigma + j\omega \epsilon)/(j\omega\mu)}$$
+
+avec $jkY = \sigma + j\omega\epsilon$
+
+Si pas de pertes ($\sigma=0$) alors $jk = j\omega\sqrt{\epsilon\mu}$ et $Y = \sqrt{\epsilon\mu}$
+
+On peut donc réécrire les équations de Maxwell
+
+$$\begin{cases}
+        \nabla \times \bar{E} &= -jkZ\bar{H}\\
+        \nabla \times \bar{H} &= jkY \bar{E}
+\end{cases}$$
+
+\subsubsection{Calcul de $H_z$ et $E_z$}
+
+On cherche une solution de propagation selon l'axe des $z$
+
+Après un long calcul on trouve un mode propre de $E_z$ :
+
+$$\boxed{\nabla_t^2 E_z + p^2 E_z = 0 \qquad \text{ avec } p^2 = \gamma^2 + k^2}$$
+
+$p^2$ est la valeur propre de l'équation de Helmholtz satisfaite par $E_z$
+
+Pour le champ magnétique on a
+
+$$\boxed{\nabla_t^2 H_z + p^2 H_z = 0 \qquad \text{ avec } p^2 = \gamma^2 + k^2}$$
+
+$p^2$ est la valeur propre de l'équation de Helmholtz satisfaite par $H_z$
+
+$E_z$ et $H_z$ ne sont pas couplés
+
+(A chaque valeur propre correspond au moins une fonction propre, solution de l'équation)
+
+\subsubsection{Solution générale pour $E$ et $H$}
+
+\begin{center} \includegraphics[scale=0.4]{images/onde-guide-sol.png} \end{center}
+Il s'agit d'une solution générale, pour $6$ composantes de champs :
+
+\begin{itemize}
+        \item Si $5$ composantes non-nulles :
+        
+        $H_z = 0 \quad \rightarrow$ Mode TM
+
+        $E_z = 0 \quad \rightarrow$ Mode TE
+
+        \item Si $4$ composantes non-nulles :
+        
+        $H_z = E_z = 0 \quad \rightarrow$ Mode TEM
+\end{itemize}
+
+
+
+\subsubsection{Mode TEM}
+
+Le mode TEM est caractérisé par des composantes transverses uniquement
+
+$\rightarrow E_z$ et $H_z$ sont nulles
+
+Les composantes transverses sont donc toutes nulles, sauf si $p=0$ donc
+$$k^2 = -\gamma^2 \Rightarrow \beta = \omega\sqrt{\epsilon\mu}$$
+
+On revient au cas des ondes TEM vu précédement
+
+
+\subsubsection{Mode TE et TM}
+
+Les composantes longitudinales (z) sont calculables indépendamment l'une de l'autre
+
+$\rightarrow$ Les solutions de propagation des équations de Maxwell peuvent donc s'exprimer comme une combinaison linéaire de deux types de modes
+
+Les modes TE, pour lesquels $E_z = 0$, et les modes TM, pour lesquels $H_z = 0$
+
+Les solutions de l'équation de Helmholtz doivent satisfaire les conditions limites
+\begin{itemize}
+        \item $\bar{n}\times \bar{E} = 0$ à la surface d'un conducteur électrique parfait
+        \item $\bar{n} \times \bar{H} = 0$ à la surface d'un conducteur magnétique parfait
+\end{itemize}
+
+En général ces conditions limites fixent aussi les valeurs propres
+
+
+\subsubsection{Interprétation de la valeur propre}
+
+Les solutions de propagation sont des solutions propres de l'équation de Helmoltz
+\begin{itemize}
+        \item Chaque solution a sa propre dépendance spatiale et sa valeur propre associée $p$
+        \item La distribution spatiale du champ est le mode de propagation du guide
+        \item La dépendance spatiale et la valeur propre seront fixées par les conditions limites aux frontières de la section transverse
+        \item Si plusieurs modes (=distributions spatiales différentes) ont la même valeur propre, ils sont dits dégénérés
+\end{itemize}
+
+\subsubsection{Diagramme de dispersion}
+
+$$\boxed{p^2 = \gamma^2 + k^2}$$
+
+En l'absence de pertes dans le milieu ($\sigma = 0$)
+
+$$k^2 = \omega^2 \epsilon \mu = (\omega/c)^2$$
+$$\gamma^2 = p^2 - (\omega/c)^2$$
+
+L'exposant de propagation $\gamma$ est nul à la pulsation de coupure $\omega_c$
+$$\omega_c = pc$$
+
+\begin{align*}
+\omega < \omega_c & \implies \gamma^2 = \alpha^2 > 0 \implies \alpha = \sqrt{p^2 - \omega^2 \epsilon \mu} \\
+\omega > \omega_c & \implies \gamma^2 = (j\beta)^2 < 0 \implies \beta = \sqrt{\omega^2 \epsilon \mu - p^2}
+\end{align*}
+
+\begin{align*}
+\alpha_{\text{mode } i} &= \sqrt{p_i^2 - \omega^2 \epsilon \mu} \\
+\beta_{\text{mode } i} &= \sqrt{\omega^2 \epsilon \mu - p_i^2}
+\end{align*}
+
+Si $\omega \gg \omega_c$
+
+$$\beta_{\text{mode } i} \rightarrow \omega \sqrt{\epsilon \mu}$$
+
+indépendamment de $i$ $\rightarrow$ propagation sans distorsion
+
+\begin{center} \includegraphics[scale=0.4]{images/diagramme-dispersion.png} \end{center}
+
+
+\subsection{Guides d'ondes rectangulaires}
+
+\begin{center} \includegraphics[scale=0.3]{images/rect-modes.png} \end{center}
+
+\begin{center} \includegraphics[scale=0.4]{images/fc-rect.png} \end{center}
+La fréquence de coupure la plus basse est obtenue pour $m=1$ et $n=0$ $\rightarrow$ mode $TE_{10}$
+
+$TE_{10}$ est le mode dominant, c'est celui qui peut se propager ($\beta > 0$) aux fréquences $f > f_c$ les plus basses
+
+\begin{center} \includegraphics[scale=0.35]{images/rect-dominant.png} \end{center}
+
+Impédance caractéristique du mode $TE_{10}$ :
+
+$$Z_{TE_{10}} = \frac{\omega \mu}{\beta_{TE_{10}}} = \frac{\sqrt{\mu / \varepsilon}}{\sqrt{1 - (f_c / f)^2}} = \frac{Z_0}{\sqrt{1 - (\lambda / 2a)^2}}$$
 
 
 \end{document}
