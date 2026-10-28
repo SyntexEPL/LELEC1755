@@ -319,8 +319,8 @@ La capacité exprime le rapport entre la charge et la différence de potentiel
 
 $$\boxed{
 C = - \frac{Q}{\displaystyle\int_c^b \nabla \phi_C \cdot d\vec{l}}
-= - \frac{\displaystyle\int_S \vec{D} \cdot d\vec{S}}{\displaystyle - \int_c^b \vec{E} \cdot d\vec{l}}
-= \frac{\displaystyle\int_S \varepsilon \vec{E} \cdot d\vec{S}}{\displaystyle\int_c^b \vec{E} \cdot d\vec{l}}
+= - \frac{\displaystyle\oint \vec{D} \cdot d\vec{S}}{\displaystyle - \int_c^b \vec{E} \cdot d\vec{l}}
+= \frac{\displaystyle\oint \varepsilon \vec{E} \cdot d\vec{S}}{\displaystyle\int_c^b \vec{E} \cdot d\vec{l}}
 }$$
 
 
@@ -386,7 +386,7 @@ Dans ce cours on s'intéresse aux ondes planes.
 
 \subsubsection{Ondes TEM}
 
-\textbf{Propriété des ondes TEM} : Leur composantes obéissent aux équations de la statique dans le plan transverse
+\textbf{Propriétés des ondes TEM} : Leurs composantes obéissent aux équations de la statique dans le plan transverse
 
 $\rightarrow$ Dans le plan transverse (en tout $z$ donné), représentation par un circuit localisé (valable uniquement pour longueur $dz$ infinitésimale)
 
@@ -471,7 +471,7 @@ $$Z_c = \frac{1}{Y_c} \triangleq \frac{V_0}{I_0}$$
 
 \begin{itemize}
         \item $Z_c$ n'est pas l'impédance d'onde
-        \item $Z_c$ est le rapport des aplitudes des ondes de tension et de courant \textbf{se déplacant dans un même sens}
+        \item $Z_c$ est le rapport des amplitudes des ondes de tension et de courant \textbf{se déplacant dans un même sens}
 \end{itemize}
 
 \textbf{Puissance électromagnétique traversant le plan transverse} :
@@ -781,12 +781,12 @@ $$\boxed{Z(z) = R_c \frac{Z_L - jR_c \tan \beta z}{R_c - jZ_L \tan \beta z} = R_
 
 (Rappel : $\beta = 2\pi / \lambda$)
 
-\begin{align*}
-\Gamma(z) &= \frac{V_{-}}{V_{+}} e^{2j\beta z} = \Gamma_{L} e^{2j\beta z} \\
-\Gamma_{L} &= \frac{Z_{L} / Z_{c} - 1}{Z_{L} / Z_{c} + 1} = \frac{Z_{L} - Z_{c}}{Z_{L} + Z_{c}}
-\end{align*}
 
-$$\Gamma(z) = \frac{Z(z) - R_c}{Z(z) + R_c}$$
+$$\Gamma(z) = \frac{V_{-}}{V_{+}} e^{2j\beta z} = \Gamma_{L} e^{2j\beta z}$$
+$$\Gamma_{L} = \frac{Z_{L} / Z_{c} - 1}{Z_{L} / Z_{c} + 1} = \frac{Z_{L} - Z_{c}}{Z_{L} + Z_{c}}$$
+
+
+$$\boxed{\Gamma(z) = \frac{Z(z) - R_c}{Z(z) + R_c}}$$
 
 
 $$R_e(P) = \frac{1}{2} |V_+|^2 \underbrace{(1 - |\Gamma|^2)}_{>0}/R_c$$
@@ -817,7 +817,7 @@ Méthode graphique pour calculer l'impédance $Z_{in}$ en utilisant l'abaque de 
         \item Calculer l'impédance d'entrée normalisée $z_{in}$ :
         \begin{itemize}
                 \item Placer l'impédance de charge normalisée $z_L$ dans l'abaque selon ses parties réelle et imaginaire
-                \item Faire une rotation de ce point autour du centre de l'abaque, dans le sens horloger (on va vers le générateur), de $\theta = 4\pi \frac{l}{\lambda}$
+                \item Faire une rotation de ce point autour du centre de l'abaque, dans le sens horloger (on va vers le générateur), de $\boxed{\theta = 4\pi \frac{l}{\lambda}}$
         \end{itemize}
         \item Calculer l'impédance d'entrée $Z_{in} = z_{in} Z_C$
 \end{itemize}
