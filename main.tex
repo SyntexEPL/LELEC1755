@@ -24,6 +24,11 @@
 
 \break
 
+\break
+\refstepcounter{part}              % passe à la partie suivante
+\part*{Lignes de transimission}                  % titre non numéroté
+\addcontentsline{toc}{part}{Lignes de transmission}
+
 \section{Équations de Maxwell}
 
 \subsection{Champ électromagnétique : Rappels}
@@ -1114,6 +1119,161 @@ $TE_{10}$ est le mode dominant, c'est celui qui peut se propager ($\beta > 0$) a
 Impédance caractéristique du mode $TE_{10}$ :
 
 $$Z_{TE_{10}} = \frac{\omega \mu}{\beta_{TE_{10}}} = \frac{\sqrt{\mu / \varepsilon}}{\sqrt{1 - (f_c / f)^2}} = \frac{Z_0}{\sqrt{1 - (\lambda / 2a)^2}}$$
+
+
+\break
+\refstepcounter{part}              % passe à la partie suivante
+\part*{Dispositifs}                  % titre non numéroté
+\addcontentsline{toc}{part}{Dispositifs}
+
+\section{Rappels}
+
+\begin{center} \includegraphics[scale=0.4]{images/bohr.png} \end{center}
+
+\begin{center} \includegraphics[scale=0.4]{images/rappel-quantique.png} \end{center}
+$$E = \frac{\hbar^2 k^2}{2m}$$
+
+Distribution de Fermi-Dirac :
+$$ f(E) = \frac{1}{1 + \exp\left(\frac{E - E_F}{k_B T}\right)} $$
+$E_F$ : Énergie de Fermi
+
+Forme simplifiée (Maxwell-Boltzmann) :
+$$f_{MB}(E) = \exp\left( -\frac{E - E_F}{k_B T} \right)$$
+
+\medskip
+
+\begin{itemize}
+        \item \textbf{Métal} :
+        
+        Niveau de Fermi dans une bande, niveaux d'énergie libres pour $E > E_F$.
+        
+        Les électrons autour de $E_F$ peuvent être accélérés par le champ $E$ et gagner de l'énergie cinétique. Une minorité d'électrons contribuent à la conductivité.
+
+        \begin{center} \includegraphics[scale=0.3]{images/quantique-metal.png} \end{center}
+
+        \item \textbf{Isolant} : 
+        
+        Niveau de Fermi entre deux bandes, niveaux d'énergie libres pour $E > E_F$.
+        
+        $E_F - E_c$ : plusieurs eV. Les électrons de peuvent pas être accélérés par le champ $E$
+
+        \begin{center} \includegraphics[scale=0.3]{images/quantique-isolant.png} \end{center}
+
+        \item Semiconducteur : 
+        
+        Niveau de Fermi entre deux bandes, mais gap faible
+
+        À $T = 0\:K$ : semiconducteur = isolant. Génération de porteurs libres lorsque $T$ augmente
+
+        $$f(E) = \frac{1}{1 + \exp(E_g / 2k_BT)}$$
+
+        \begin{center} \includegraphics[scale=0.3]{images/quantique-semi.png} \end{center}
+\end{itemize}
+
+\textbf{Nombre d'électrons de conduction} = Intégrale de la densité totale d'états permis de la bande de conduction
+
+
+\section{Conduction}
+
+Une tension va produire un courant, qui est le déplacement de charges sous l'action du champ électrique
+
+Ces charges sont :
+\begin{itemize}
+        \item Dans le vide : Des électrons libres
+        \item Dans un gaz ionisé : Des électrons libres + ions chargés positivement
+        \item Dans un liquide : Des ions positifs et négatifs
+        \item Dans un solide : Porteurs de charges ayant diverses mobilités (conducteurs, isolants, semi-conducteurs)
+\end{itemize}
+
+\subsection{Porteurs libres dans un métal}
+
+$E_F$ (niveau de Fermi) = $\mu$ (potentiel chimique)
+
+$$(\mu - E_c)_0 = \frac{h^2}{8m_c}\left(\frac{3n}{\pi}\right)^{2/3}$$
+
+Si la distance interatomique $d$ d'un métal monovalent de structure cubique est connue, alors $n = 1/d^3$
+
+\subsection{Vue microscopique : Effet du champ électrique $E$}
+
+Le champ électrique accélère les électrons entre les collisions, on a une vitesse moyenne
+$$v = \mu (-E)$$
+$\mu$ est la mobilité (entre les collisions) en $m^2/V.s$
+$$\text{Densité de courant :} \quad J = n (-q) v = nq\mu E = \sigma E$$
+
+\subsection{Vue macroscopique :  Courant dans un barreau}
+
+$$R = \frac{V}{I} = \sigma^{-1} \frac{L}{A} = \rho \frac{L}{A} = \frac{1}{G}$$
+$$J = \sigma \frac{V}{L} = \sigma E$$
+
+Effet de la température : Les électrons bougent plus facilement, mais ils se cognent aussi plus, la résistance peut augmenter ou diminuer
+
+\subsection{Semi-conducteurs et dopage}
+
+Génération :
+
+\begin{itemize}
+        \item Excitation d'un $e^-$ vers BC (Bande de Conduction) $\rightarrow$ création de "trous" $h^+$ dans BV (Bande de Valence)
+        \item Accélération de $e^-$ et $h^+$ sous l'effet d'un champ $E$
+        \item $N_{e^-} = N_{h^+}$
+\end{itemize}
+
+Génération thermique :
+
+$$\text{Probabilité} = K \exp\left(\frac{-qV_g}{kT}\right) \qquad \phi_T = \frac{kT}{q} = 0.026 \frac{T}{300} \: [V]$$
+
+Taux de recombinaison $R$ :
+
+Dépend du nombre de porteurs actifs (libres) présents
+$$R = r n p$$
+($r$ = constante du matériau, $n$ = concentration d'électrons libres, $p$ = concentration de trous)
+
+\subsubsection{Équilibre des porteurs libres}
+
+Il y a en continu génération et recombinaison
+
+Équilibre valable \textbf{quel que soit le dopage} :
+
+$$\boxed{pn = n_i^2}$$
+
+avec $n_i$ la \textbf{concentration intrinsèque}
+
+Sans dopage : $n = p = n_i$
+
+Concentration intrinsèque du Si à $300 K$ : $n = n_i = 1.38 \: 10^{10} \unit{\per\cm\cubed} = p$
+
+
+\subsubsection{Semi-conducteurs dopés}
+
+\begin{center} \includegraphics[scale=0.4]{images/atome-dopage.png} \end{center}
+
+\begin{itemize}
+        \item \textbf{Dopage N} :
+        
+        On ajoute des impuretés de 5 électrons de valence, qui vont ajouter un électron chacun
+
+        \begin{center} \includegraphics[scale=0.3]{images/dopage-n.png} \end{center}
+
+        Concentration ($cm^{-3}$) d'impuretés : $N_D$
+        $$N_D >> n_i \qquad ; \qquad n \approx N_D^+ \qquad ; \qquad n >> p$$
+
+        $$\boxed{p_n = \frac{n_i^2}{n_n} = \frac{n_i^2}{N_D} << n_n}$$
+        Le courant sera principalement dû aux électrons
+
+        \item \textbf{Dopage P} :
+        
+        On ajoute des impuretés de 3 électrons de valence, qui vont ajouter un "trou" chacun
+
+        \begin{center} \includegraphics[scale=0.3]{images/dopage-p.png} \end{center}
+
+        Concentration ($cm^{-3}$) d'impuretés : $N_A$
+        $$N_A >> n_i \qquad ; \qquad p \approx N_A^- \qquad ; \qquad p >> n$$
+
+        $$\boxed{n_p = \frac{n_i^2}{p_p} = \frac{n_i^2}{N_A} << p_p}$$
+        Le courant sera principalement dû aux trous
+\end{itemize}
+
+
+<..15.2 inclu>
 
 
 \end{document}
