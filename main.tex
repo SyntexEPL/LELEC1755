@@ -1272,6 +1272,57 @@ Concentration intrinsèque du Si à $300 K$ : $n = n_i = 1.38 \: 10^{10} \unit{\
         Le courant sera principalement dû aux trous
 \end{itemize}
 
+\subsubsection{Neutralité électrique globale à l'équilibre}
+
+Densité de charge d'espace ($Cb/cm^2$) :
+
+$$\rho(x) = q (p(x) - n(x) - N_A + N_D) = 0$$
+
+\subsubsection{Niveau de Fermi}
+
+\begin{itemize}
+        \item Semiconducteur intrinsèque :
+        
+        $$\phi_F = (E_F - E_i)/q = 0$$
+
+        \begin{center} \includegraphics[scale=0.3]{images/fermi-intrinseque.png} \end{center}
+        
+        \item Semiconducteur dopé N :
+        
+        $$E_F = E_i + kT\cdot \ln\left(\frac{N_D}{n_i}\right)$$
+        $$\phi_F = \phi_T \cdot \ln\left(\frac{N_D}{n_i}\right) \quad , \quad \phi_T = \frac{kT}{q}$$
+        $$n_0 = N_D = n_i \cdot e^{\phi_F/\phi_T}$$
+
+        \begin{center} \includegraphics[scale=0.3]{images/fermi-dopeN.png} \end{center}
+
+        \item Semiconducteur dopé P :
+        
+        $$E_F = E_i - kT\cdot \ln\left(\frac{N_A}{n_i}\right)$$
+        $$\phi_F = -\phi_T \cdot \ln\left(\frac{N_A}{n_i}\right) \quad , \quad \phi_T = \frac{kT}{q}$$
+        $$p_0 = N_A = n_i \cdot e^{-\phi_F/\phi_T}$$
+
+        \begin{center} \includegraphics[scale=0.3]{images/fermi-dopeP.png} \end{center}
+\end{itemize}
+
+\subsubsection{Courant produit dans un barreau Semiconducteur}
+
+$$J = (n\mu_n + p\mu_p) q E = \sigma E$$
+
+Avec $n$ et $p$ les concentrations de porteurs,$\;\mu_n$ et $\mu_p$ leurs mobilités $[cm^2/(V.s)]$
+
+\subsubsection{Effet du potentiel sur les électrons}
+
+\begin{center} \includegraphics[scale=0.4]{images/graph-potentiel.png} \end{center}
+
+$n(x_2)$ dépend du potentiel selon une loi de type Boltzmann
+
+$$n = n_{0} e^{\frac{\Delta\phi(x)}{\phi_{T}}} \Rightarrow n' = n - n_{0} = n_{0} \left[ e^{\frac{\Delta\phi(x)}{\phi_{T}}} - 1 \right]$$
+
+$$p = p_0 e^{-\frac{\Delta\phi(x)}{\phi_T}} \Rightarrow p' = p - p_0 = p_0 \left[ e^{-\frac{\Delta\phi(x)}{\phi_T}} - 1 \right]$$
+
+Même une légère tension peut modifier considérablement la concentration en porteurs
+
+
 
 <..15.2 inclu>
 
