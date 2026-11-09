@@ -1298,7 +1298,7 @@ $$\rho(x) = q (p(x) - n(x) - N_A + N_D) = 0$$
         \item Semiconducteur dopé P :
         
         $$E_F = E_i - kT\cdot \ln\left(\frac{N_A}{n_i}\right)$$
-        $$\phi_F = -\phi_T \cdot \ln\left(\frac{N_A}{n_i}\right) \quad , \quad \phi_T = \frac{kT}{q}$$
+        $$\phi_F = -\phi_T \cdot \ln\left(\frac{N_A}{n_i}\right) \quad , \quad \boxed{\phi_T = \frac{kT}{q}}$$
         $$p_0 = N_A = n_i \cdot e^{-\phi_F/\phi_T}$$
 
         \begin{center} \includegraphics[scale=0.3]{images/fermi-dopeP.png} \end{center}
@@ -1322,9 +1322,51 @@ $$p = p_0 e^{-\frac{\Delta\phi(x)}{\phi_T}} \Rightarrow p' = p - p_0 = p_0 \left
 
 Même une légère tension peut modifier considérablement la concentration en porteurs
 
+<Fin cours Conduction>
 
 
-<..15.2 inclu>
+\section{Diode : Jonction PN}
+
+\begin{center} \includegraphics[scale=0.4]{images/diode.png} \end{center}
+
+Profil de dopage : Abrupt en théorie (passe de $-N_A$ à $N_D$ au milieu), Linéaire ou graduel en pratique (passe plus doucement)
+
+\subsection{Situation à l'équilibre}
+
+\begin{center} \includegraphics[scale=0.35]{images/jonction-metallurgiqe.png} \end{center}
+
+Au milieu il y a une zone de transition, dans laquelle $E_i$ croise $E_{F}$. $E_{Fp}$ est au même niveau que $E_{Fn}$, ce qui change c'est $E_v$, $E_i$ et $E_c$, ils se décallent de $\phi_0 = \phi_{Fn} - \phi_{Fp}$
+
+$p(x)$ et $n(x)$ à la transition :
+
+\begin{center} \includegraphics[scale=0.35]{images/diode-eq.png} \end{center}
+
+$$\phi(x) = \frac{E_{F_{p,n} - E_i(x)}}{q}$$
+$$p(x) = n\cdot e^{-\phi(x)/\phi_T}$$
+$$n(x) = n\cdot e^{\phi(x)/\phi_T}$$
+
+Champ électrique :
+
+$$E = \frac{-d\phi}{dx}$$
+
+\medskip
+
+On peut ajouter l'équation de Poisson :
+$$\frac{d^2\phi}{dx^2}=\frac{-\rho(x)}{\epsilon_s}$$
+
+<ZD, avec approx de rho(x) constant>
+
+Les électrons et les trous ont tendances à vouloir s'équilibrer, mais le champ électrique $E$ les en empêche
+
+\medskip
+
+Potentiel en fonction de $N_A$ et $N_D$ :
+\begin{center} \includegraphics[scale=0.4]{images/pot-na-nd.png} \end{center}
+$$\phi_0 = \frac{kT}{q} \ln\left(\frac{N_A N_D}{n_i^2}\right)\quad ; \quad l_{po} = \sqrt{\frac{2\varepsilon_s}{q} \frac{\phi_0 N_D}{N_A(N_A + N_D)}}\quad ; \quad l_{no} = \sqrt{\frac{2\varepsilon_s}{q} \frac{\phi_0 N_A}{N_D(N_A + N_D)}}$$
+
+\begin{center} \includegraphics[scale=0.35]{images/champ-na-nd.png} \end{center}
+$$E_{\text{max}} = E(0) = -\sqrt{\frac{2q}{\epsilon_s} \frac{\phi_0 N_A N_D}{N_A + N_D}} = -\frac{2\phi_0}{l_{po} + l_{no}}$$
+
 
 
 \end{document}
