@@ -24,6 +24,7 @@
 
 \break
 
+\begin{comment}
 \break
 \refstepcounter{part}              % passe à la partie suivante
 \part*{Lignes de transimission}                  % titre non numéroté
@@ -335,13 +336,6 @@ $$\boxed{L = \frac{\int_S \vec{B} \cdot d\vec{S}}{I} = \frac{\Phi}{I} = \frac{\i
 
 L'inductance exprime le rapport entre le flux magnétique et le courant qui a créé ce flux
 
-\begin{comment}
-\subsubsection{Inductance mutuelle}
-
-\begin{center} \includegraphics[scale=0.2]{images/inductance-mutuelle.png} \end{center}
-$$L_{12} = L_{21} = \frac{\mu}{4\pi} \int_{C_1} \int_{C_2} \frac{d\vec{l}_1 \cdot d\vec{l}_2}{|\vec{r}_1 - \vec{r}_2|}$$
-\end{comment}
-
 \break
 
 \section{Circuits distribués}
@@ -594,16 +588,6 @@ Circuit équivalent d'une ligne TEM :
 Lignes uniformes (Z, Y constantes) :
 $$Z = R + j\omega L \qquad ; \qquad Y = G + j\omega C$$
 
-\begin{comment}
-$$\left\{\begin{array}{l}
--\frac{dV(z, p)}{dz}=Z I(z, p) \\
--\frac{dI(z, p)}{dz}=Y V(z, p)
-\end{array}\right. \quad \text{On dérive} \rightarrow \quad \left\{\begin{array}{l}
--\frac{d^2V(z, p)}{dz^2}=Z \frac{dI(z, p)}{dz} \\
--\frac{d^2I(z, p)}{dz^2}=Y \frac{dV(z, p)}{dz}
-\end{array}\right.$$
-\end{comment}
-
 En résolvant le circuit, on peut trouver l'équation des télégraphistes :
 
 $$\boxed{\begin{cases}
@@ -804,18 +788,6 @@ Adapter au sens des lignes de transmission, c'est annuler le coefficient de réf
 
 \subsubsection{Abaque de Smith}
 
-\begin{comment}
-On décompose $\frac{Z(z)}{R_c} = R + jX$, et $\Gamma(z) = a + jb$
-
-\begin{center} \includegraphics[scale=0.4]{images/smith.png} \end{center}
-
-\begin{itemize}
-        \item Chaque cercle correspond à une valeur de $R$
-        \item Chaque courbe correspond à une valeur de $X$
-        \item $\Gamma$ est le point correspondant sur le plan complexe
-\end{itemize}
-\end{comment}
-
 Méthode graphique pour calculer l'impédance $Z_{in}$ en utilisant l'abaque de Smith :
 \begin{itemize}
         \item Calculer l'impédance de charge normalisée $z_L = \frac{Z_L}{Z_C}$
@@ -847,14 +819,6 @@ On peut choisir de prendre l'abaque en impédance ou en admittance. Si l'abaque 
 Pour une ligne sans pertes $R = G = 0$, on trouve
 
 $$\boxed{\frac{\partial^2 v}{\partial z^2} = LC \frac{\partial^2 v}{\partial t^2}} \qquad \boxed{\frac{\partial^2 i}{\partial z^2} = LC \frac{\partial^2 i}{\partial t^2}} \qquad LC = \frac{1}{c^2} \qquad c = \frac{1}{\sqrt{LC}} \qquad Y_c = \sqrt{\frac{C}{L}}$$
-
-\begin{comment}
-On pose $\tau \triangleq \frac{z}{c}$, on obtient
-\begin{align*}
-        v(t,\tau) &= f_+(t-\tau) + f_-(t+\tau)\\
-        i(t,\tau) &= g_+(t-\tau) + g_-(t+\tau)
-\end{align*}
-\end{comment}
 
 Solutions générales :
 
@@ -1121,6 +1085,8 @@ Impédance caractéristique du mode $TE_{10}$ :
 $$Z_{TE_{10}} = \frac{\omega \mu}{\beta_{TE_{10}}} = \frac{\sqrt{\mu / \varepsilon}}{\sqrt{1 - (f_c / f)^2}} = \frac{Z_0}{\sqrt{1 - (\lambda / 2a)^2}}$$
 
 
+\end{comment}
+
 \break
 \refstepcounter{part}              % passe à la partie suivante
 \part*{Dispositifs}                  % titre non numéroté
@@ -1322,7 +1288,57 @@ $$p = p_0 e^{-\frac{\Delta\phi(x)}{\phi_T}} \Rightarrow p' = p - p_0 = p_0 \left
 
 Même une légère tension peut modifier considérablement la concentration en porteurs
 
-<Fin cours Conduction>
+\subsubsection{Équation de Poisson}
+
+$$\boxed{\frac{d^2 \phi(x)}{dx^2} = -\frac{\rho(x)}{\epsilon_s}}$$
+
+$\epsilon_s$ : Permittivité diélectrique ($\approx 1 pF/cm$ pour le Si)
+
+$$E(x) = -\frac{d\phi(x)}{dx} = \frac{1}{\epsilon_s} \int_x \rho(x) \: dx$$
+
+\subsubsection{Dopage inhomogène à l'équilibre}
+
+\begin{center} \includegraphics[scale=0.3]{images/dopage-inhomogene-moins.png} \end{center}
+
+On est à l'équilibre $\Rightarrow \quad V=0, \; J=0$
+
+Il y a un gradient de porteurs, on a donc un courant de diffusion :
+$$J_\text{diffusion} = q\cdot D_n\cdot \frac{dn_0(x)}{dx}$$
+avec $D_n = \mu_n \phi_T$
+
+\medskip
+
+On a un courant de dérive qui se forme et qui va compenser ce courant de diffusion :
+$$J_\text{dérive} = q\cdot n_0(x)\cdot \mu_n\cdot E_0(x)$$
+
+On trouve donc (même raisonnement pour les trous) :
+
+$$\boxed{J_n(x) = -q\mu_n \left[n(x)\frac{d\phi(x)}{dx} -  \phi_T \cdot \frac{dn(x)}{dx}\right] \qquad (=0 \text{ à l'équilibre})}$$
+$$\boxed{J_p(x) = q\mu_p \left[-p(x)\frac{d\phi(x)}{dx} - \phi_T \cdot \frac{dp(x)}{dx}\right] \qquad (=0 \text{ à l'équilibre})}$$
+
+Courant total :
+$$\boxed{I = A(J_n + J_p)}$$
+
+\medskip
+
+Équation de continuité :
+$$\nabla\cdot \vec{J} = -\frac{\partial \rho}{\partial t}$$
+Déséquilibre $\Rightarrow$ Génération et/ou recombinaison $\Rightarrow$ Équilibre
+
+$$\frac{dJ_n(x)}{dx} = q\frac{n'(x)}{\tau_n} \qquad ; \qquad \frac{dJ_p(x)}{dx} = -q\frac{p'(x)}{\tau_p}$$
+
+Génération extérieure (lumière, radiations, ... Ajoute les termes $G_n$ et $G_p$) :
+
+$$\frac{\partial n}{\partial t} = \frac{1}{q} \frac{dJ_n}{dx} + G_n - U_n \qquad \text{ avec } \qquad U_n = \frac{n(x) - n_0}{\tau_n}$$
+$$\frac{\partial p}{\partial t} = -\frac{1}{q} \frac{dJ_p}{dx} + G_p - U_p \qquad \text{ avec } \qquad U_p = \frac{p(x) - p_0}{\tau_p}$$
+
+
+\medskip
+
+\textbf{Temps de vie et longueur de diffusion} :
+
+Si, dans une portion de silicium, la recombinaison est négligeable, le temps de vie est infini. Si ce n'est pas le cas, on définit une \textbf{longueur de diffusion} :
+$$L_n = \sqrt{D_n \tau_n}$$
 
 
 \section{Diode : Jonction PN}
@@ -1354,9 +1370,7 @@ $$E = \frac{-d\phi}{dx}$$
 On peut ajouter l'équation de Poisson :
 $$\frac{d^2\phi}{dx^2}=\frac{-\rho(x)}{\epsilon_s}$$
 
-<ZD, avec approx de rho(x) constant>
-
-Les électrons et les trous ont tendances à vouloir s'équilibrer, mais le champ électrique $E$ les en empêche
+On fait l'approximation $\rho(x) \approx q\cdot N_D = \text{constante} \; \Rightarrow$ champ électrique linéaire et potentiel parabolique
 
 \medskip
 
