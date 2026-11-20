@@ -1288,7 +1288,7 @@ $$p = p_0 e^{-\frac{\Delta\phi(x)}{\phi_T}} \Rightarrow p' = p - p_0 = p_0 \left
 
 Même une légère tension peut modifier considérablement la concentration en porteurs
 
-\subsubsection{Équation de Poisson}
+\subsubsection{Équation de Poisson (utile dans la zone de déplétion)}
 
 $$\boxed{\frac{d^2 \phi(x)}{dx^2} = -\frac{\rho(x)}{\epsilon_s}}$$
 
@@ -1296,7 +1296,7 @@ $\epsilon_s$ : Permittivité diélectrique ($\approx 1 pF/cm$ pour le Si)
 
 $$E(x) = -\frac{d\phi(x)}{dx} = \frac{1}{\epsilon_s} \int_x \rho(x) \: dx$$
 
-\subsubsection{Dopage inhomogène à l'équilibre}
+\subsubsection{Dopage inhomogène à l'équilibre (aucune excitation extérieure)}
 
 \begin{center} \includegraphics[scale=0.3]{images/dopage-inhomogene-moins.png} \end{center}
 
@@ -1309,7 +1309,7 @@ avec $D_n = \mu_n \phi_T$
 \medskip
 
 On a un courant de dérive qui se forme et qui va compenser ce courant de diffusion :
-$$J_\text{dérive} = q\cdot n_0(x)\cdot \mu_n\cdot E_0(x)$$
+$$J_\text{dérive} = J_\text{conduction} = q\cdot n_0(x)\cdot \mu_n\cdot E_0(x)$$
 
 On trouve donc (même raisonnement pour les trous) :
 
@@ -1370,7 +1370,7 @@ $$E = \frac{-d\phi}{dx}$$
 On peut ajouter l'équation de Poisson :
 $$\frac{d^2\phi}{dx^2}=\frac{-\rho(x)}{\epsilon_s}$$
 
-On fait l'approximation $\rho(x) \approx q\cdot N_D = \text{constante} \; \Rightarrow$ champ électrique linéaire et potentiel parabolique
+On fait l'approximation $\boxed{\rho(x) \approx q\cdot N_D = \text{constante}} \; \Rightarrow$ champ électrique linéaire et potentiel parabolique
 
 \medskip
 
@@ -1381,6 +1381,150 @@ $$\phi_0 = \frac{kT}{q} \ln\left(\frac{N_A N_D}{n_i^2}\right)\quad ; \quad l_{po
 \begin{center} \includegraphics[scale=0.35]{images/champ-na-nd.png} \end{center}
 $$E_{\text{max}} = E(0) = -\sqrt{\frac{2q}{\epsilon_s} \frac{\phi_0 N_A N_D}{N_A + N_D}} = -\frac{2\phi_0}{l_{po} + l_{no}}$$
 
+
+\break
+\refstepcounter{part}              % passe à la partie suivante
+\part*{Dispositifs}                  % titre non numéroté
+\addcontentsline{toc}{part}{Dispositifs}
+
+\section{Conductivité}
+
+\subsection{Conduction dans les métaux}
+
+Les atomes forment un cristal, ils sont si proches les uns des autres que les électrons de la couche externe sont aussi bien attirés par les atomes voisins que par leur atome.
+
+Ces électrons libres seront les électrons de conduction, on en a en moyenne $1$ par atome.
+
+Lorsque la température est non nul, il y a une résistance dû aux collisions.
+
+\medskip
+
+Sous l'effet d'un champ électrique, on peut calculer la vitesse moyenne des électrons :
+$$v = \mu(-E)$$
+avec $\mu$ la mobilité entre les collisions
+
+\medskip
+
+On peut ensuite exprimer la densité de courant par unité de surface :
+$$J = n(-q)v = nq\mu E = \sigma E = \sigma \frac{V}{L}$$
+avec $n$ le nombre de porteurs libres par unité de volume (et $\sigma = nq\mu$ la conductivité)
+
+$$R = \frac{V}{I} = \sigma^{-1} \frac{L}{A} = \rho \frac{L}{A} = \frac{1}{G}$$
+
+Aux température ambiantes, les conducteurs métalliques ont habituellement une résistance croissante avec la température.
+
+
+\section{Semi-conducteurs}
+
+Les semi-conducteur utilisé sont de valence $4$ (Si, Ge, $\dots$)
+
+\subsection{Porteurs libres}
+
+Seuls certains niveaux d'énergie sont permis pour les électrons, il faut une quantité d'énergie bien précise pour qu'un lien soit rompu
+\begin{center} \includegraphics[scale=0.3]{images/quantique-semi.png} \hspace{0.15\linewidth} \includegraphics[scale=0.35]{images/semi-intrinseque.png} \end{center}
+($E_g = 1,124 eV$ pour le silicium)
+
+A température ambiante, seuls quelques électrons peuvent être excités vers la bande de conduction, ils deviennent des électrons libres.
+
+Quand un lien de covalence est rompu, une "trou" est libéré. Les électrons libres et les trous peuvent se déplacer, ils contribuent à la conduction électrique.
+
+\medskip
+
+La densité de courant devient
+$$J = (n\mu_n + p\mu_p) qE = \sigma E$$
+avec $n$ et $p$ les concentrations d'électrons et de trous respectivement
+
+\begin{center}\includegraphics[scale=0.4]{images/courant-semi.png}\end{center}
+
+Dans un semi-conducteur pur $p = n = n_i$
+
+où $n_i$ est la \textbf{concentration intrinsèque}, à $300K$ elle vaut $1,38 \; 10^{10} cm^{-3}$
+
+
+\subsection{Dopage}
+
+\begin{center} \includegraphics[scale=0.35]{images/atome-dopage.png} \end{center}
+
+\subsubsection{Dopage type $n$}
+
+On introduit une petite quantité d'éléments de valence $5$ (le donneurs), l'électron "en trop" participera à la conduction
+
+La concentration de cet élément se note $N_D$ avec $N_D >> n_i$
+
+\subsubsection{Dopage type $p$}
+
+On introduit une petite quantité d'éléments de valence $3$ (l'accepteur), le trou "en trop" participera à la conduction
+
+La concentration de cet élément se note $N_A$ avec $N_A >> n_i$
+
+\subsubsection{Contrôler les porteurs libres}
+
+Le \textbf{taux de génération thermique} $G$ est le nombre de paire électron-trou générées par seconde et par mètre cube, dépend du matériau et de la température.
+
+\medskip
+
+Toutes les formes d'énergie de l'électron seront exprimées en potentiel électrique. Un potentiel $\phi$ élève l'énergie des électrons d'une quantité $q\phi$
+
+\medskip
+
+On définit le potentiel thermique :
+$$\phi_T = \frac{kT}{q} = 0.026\frac{T}{300}$$
+L'énergie nécessaire pour la génération d'un électron de conduction est
+$$E_g = q V_g$$
+avec $V_g$ le gap d'énergie caractéristique du matériau
+
+\medskip
+
+La statistique de Boltzman exprime que la probabilité d'émission des porteurs :
+$$\text{Probabilité} = K \exp{\left(\frac{-qV_g}{kT}\right)} = K \exp{\left(\frac{-V_g}{\phi_T}\right)}$$
+
+Le \textbf{taux de recombinaison} $R$ en paires électrons-trous par seconde et par mètre cube, dépend du nombre de porteurs libres présents.
+
+Dans un semi-conducteur dopé, à température "normale" et pour des concentrations habituelles de dopants, toutes les impuretés sont ionisées (apporte leur porteur libre)
+
+$$R = rnp$$
+avec $r$ une constante qui dépend du matériau
+
+A l'équilibre, le taux de génération est égale au taux de recombinaison
+$$G = G_i = R_i = r n_i p_i = r n_i^2$$
+
+En égalant les taux de recombinaison et de génération pour un semi-conducteur dopé, on obtient
+$$\boxed{pn = n_i^2}$$
+
+($n_i$ augmente avec la température et diminue avec le band-gap)
+
+
+\subsubsection{Majoritaires et minoritaires}
+
+\begin{itemize}
+        \item Semi-conducteur type $N$ :
+        
+        $$N_d >> n_i \quad \text{ et } n_n \approx N_d$$
+        où $n_n$ est la notation pour la concentration d'électrons dans une zone dopée $N$
+
+        Le courant est principalement dû aux électrons, ce sont les \textbf{majoritaires}
+
+        On peut également trouver la concentration de trous dans la zone $N$
+        $$p_n = \frac{n_i^2}{n_n} = \frac{n_i^2}{N_d} << n_n$$
+        Ce sont les \textbf{minoritaires}
+
+        \item Semi-conducteur type $P$ :
+        
+        $$N_a >> n_i \quad \text{ et } p_p \approx N_a$$
+        Le courant est principalement dû aux trous, ce sont les \textbf{majoritaires}
+        $$n_p = \frac{n_i^2}{p_p} = \frac{n_i^2}{N_a} << p_p$$
+\end{itemize}
+
+On pourra souvent négliger les minoritaires
+
+À l'équilibre (pas de courant), la neutralité électrique du dispositif reste assurée $p - n - N_A + N_D = 0$
+
+
+\subsection{Émission de lumière}
+
+Quand un électron se recombine, il perd un "quantum" d'énergie $E = hf$, où $f$ est la fréquence de l'onde émise. Dans le semi-conducteur, ce quantum correspond à la largeur de la bande interdite.
+
+C'est comme ca que les LEDs fonctionnent.
 
 
 \end{document}
